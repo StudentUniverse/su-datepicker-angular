@@ -1,0 +1,39 @@
+{
+  "name": "su-angular-date-range",
+  "version": "0.0.1",
+  "description": "flexible angular date range picker without dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/StudentUniverse/su-angular-date-range.git"
+  },
+  "keywords": [
+    "angular",
+    "datepicker",
+    "range",
+    "studentuniverse"
+  ],
+  "author": "StudentUniverse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StudentUniverse/su-angular-date-range/issues"
+  },
+  "homepage": "https://github.com/StudentUniverse/su-angular-date-range#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-banner": "^0.6.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "^0.12.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7"
+  }
+}
