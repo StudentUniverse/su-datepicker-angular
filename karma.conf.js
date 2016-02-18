@@ -19,6 +19,7 @@ module.exports = function(config) {
       'lib/angular/1.2.29/angular-mocks/angular-mocks.js',
 
       'build/su-datepicker.js',
+      'src/su/datepicker/util.js', //include separately for testing
       'test/**/*Spec.js'
     ],
 
@@ -69,5 +70,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  });
+};
