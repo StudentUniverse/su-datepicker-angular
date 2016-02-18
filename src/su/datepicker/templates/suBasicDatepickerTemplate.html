@@ -1,0 +1,24 @@
+<su-datepicker-month date="date">
+  <table>
+    <thead>
+      <tr>
+        <th class="text-center">Sun</th>
+        <th class="text-center">Mon</th>
+        <th class="text-center">Tue</th>
+        <th class="text-center">Wed</th>
+        <th class="text-center">Thu</th>
+        <th class="text-center">Fri</th>
+        <th class="text-center">Sat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="week in weeks track by $index">
+        <td ng-repeat="day in week track by $index" class="text-center">
+          <button>
+            {{day.getDate()}}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</su-datepicker-month>
