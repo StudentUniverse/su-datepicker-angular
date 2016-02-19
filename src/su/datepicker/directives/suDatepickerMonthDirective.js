@@ -10,8 +10,6 @@ function suDatepickerMonthDirective(){
       date: '='
     },
     link: function(scope, element, attrs, controller, transclude){
-      var today = new Date();
-      scope.date = util.copyDateOnly(scope.date || new Date());
       scope.weeks = [];
 
       transclude(function(clone, transScope){

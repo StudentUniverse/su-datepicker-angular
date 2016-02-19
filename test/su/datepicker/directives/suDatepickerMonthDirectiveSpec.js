@@ -1,6 +1,5 @@
 describe('su.datepicker.directives.suDatepickerMonthDirective', function(){
-    beforeEach(module('su.datepicker',
-    'su.datepicker.templates.suDatepickerMonthTemplate'));
+    beforeEach(module('su.datepicker'));
 
     var $compile, $rootScope;
 
@@ -38,13 +37,4 @@ describe('su.datepicker.directives.suDatepickerMonthDirective', function(){
       expect(firstWeek[0]).not.toBeDefined(); //Sunday is Jan 31 2016
       expect(angular.isDate(firstWeek[1])).toBe(true);
     });
-
-    it('should be able to use custom template', inject(function($templateCache){
-      var templateContents = '<h1>foo<h1>';
-      $templateCache.put('customtemplate.html', templateContents);
-      $rootScope.today = new Date();
-      var element = $compile('<su-datepicker-month template-url="customTemplate.html" date="date"></su-datepicker-month>')($rootScope);
-      $rootScope.$digest();
-      expect(element.html()).toEqual(templateContents);
-    }));
 });

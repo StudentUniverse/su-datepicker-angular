@@ -52,4 +52,55 @@ describe('util', function(){
       expect(copy).not.toBe(today);
     });
   });
+
+  describe('changeMonth', function(){
+    it('should be defined', function(){
+      expect(typeof util.changeMonth).toEqual('function');
+    });
+
+    it('should return a new instance of Date', function(){
+      var today = new Date();
+      var copy = util.changeMonth(today, 0);
+
+      expect(angular.isDate(copy)).toBe(true);
+
+      expect(copy.getFullYear()).toEqual(today.getFullYear());
+      expect(copy.getMonth()).toEqual(today.getMonth());
+
+      expect(copy.getDate()).toEqual(1);
+
+      expect(copy).not.toBe(today);
+    });
+
+    it('should return a date moved by the diff in months', function(){
+      var date = new Date(2016, 1, 19);
+      var nextMonth = util.changeMonth(date, 1);
+      var previousMonth = util.changeMonth(date, -1);
+
+      expect(nextMonth.getFullYear()).toEqual(2016);
+      expect(nextMonth.getMonth()).toEqual(2);
+      expect(nextMonth.getDate()).toEqual(1);
+
+      expect(previousMonth.getFullYear()).toEqual(2016);
+      expect(previousMonth.getMonth()).toEqual(0);
+      expect(previousMonth.getDate()).toEqual(1);
+    });
+
+    it('should change year if needed', function(){
+      var beginingOfYear = new Date(2016, 0, 15);
+      var endOfYear = new Date(2016, 11, 16);
+
+      var previousMonth = util.changeMonth(beginingOfYear, -1);
+      var nextMonth = util.changeMonth(endOfYear, 1);
+
+      expect(previousMonth.getFullYear()).toEqual(2015);
+      expect(previousMonth.getMonth()).toEqual(11);
+      expect(previousMonth.getDate()).toEqual(1);
+
+      expect(nextMonth.getFullYear()).toEqual(2017);
+      expect(nextMonth.getMonth()).toEqual(0);
+      expect(nextMonth.getDate()).toEqual(1);
+    });
+
+  });
 });

@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     watch: {
       //run unit tests with karma (server needs to be already running)
       src: {
-        files: ['src/**/*.js'],
+        files: ['src/**/*.js', 'src/**/*.html'],
         tasks: ['build']
       }
     },

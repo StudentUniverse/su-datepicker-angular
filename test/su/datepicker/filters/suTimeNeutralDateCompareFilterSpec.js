@@ -7,7 +7,6 @@ describe('su.datepicker.filters.suTimeNeutralDateCompareFilter', function(){
         filter = $filter('suTimeNeutralDateCompare');
     }));
 
-    // must use inject to run config/run of module
     it('should be able to load', inject(function($injector){
         expect($injector.has('suTimeNeutralDateCompareFilter')).toBe(true);
     }));
