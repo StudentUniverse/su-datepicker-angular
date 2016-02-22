@@ -25,7 +25,7 @@
       </li>
     </ul>
     <div>
-      <input type="text" ng-model="date"/>
+      <input type="text" ng-model="date" readonly="true"/>
     </div>
     <div>
       <button ng-click="previousMonth()">Previous</button>
@@ -47,9 +47,10 @@
     <ul>
       <li>the date will not change by changing month</li>
       <li>date change is expected to be one way using the datepicker</li>
+      <li>using disable-past attribute will disable dates less than today</li>
     </ui>
     <div>
-      <input type="text" ng-model="date"/>
+      <input type="text" ng-model="date" readonly="true"/>
     </div>
     <su-datepicker-default date="date" disable-past></su-datepicker-default>
     <p>Custom template can be used by adding template-url attribute</p>
