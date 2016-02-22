@@ -12,9 +12,18 @@
 </head>
 
 <body ng-app="app">
-  <h1>StudentUniverse datepicker</h1>
-  <section ng-controller="basicDatepickerCtrl">
-    <h3>Simple date picker</h3>
+  <h1>StudentUniverse angular date range picker</h1>
+  <section ng-controller="rawMonthCtrl" style="margin-bottom: 225px;">
+    <h3>Raw month picker picker</h3>
+    <ul>
+      <li>date is required and is used to track which month is displayed</li>
+      <li>clickCallback will be called with the date that was clicked</li>
+      <li>dateDisabled callback will be called to determine if date is enabled</li>
+      <li>customClass callback will be called to set custom styles</li>
+      <li>cheapMousernterCallback will be called when a date is hovered.
+        Callback must trigger $digest manually for performance reasons.
+      </li>
+    </ul>
     <div>
       <input type="text" ng-model="date"/>
     </div>
@@ -26,10 +35,13 @@
         date="date"
         click-callback="dateClicked(date)"
         date-disabled="isDisabled(date)"
-        custom-class="getDateClass(date)">
+        custom-class="getDateClass(date)"
+        cheap-mouseenter-callback="cheapHover(date)">
         </su-datepicker-month-default>
     </div>
+    <p>If you need further customizations you can use su-datepicker-month directive</p>
   </section>
+
 </body>
 
 </html>

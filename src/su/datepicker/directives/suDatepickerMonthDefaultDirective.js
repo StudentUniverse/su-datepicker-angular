@@ -9,7 +9,8 @@ function suDatepickerMonthDefaultDirective(){
       date: '=',
       clickCallback: '&',
       dateDisabled: '&',
-      customClass: '&'
+      customClass: '&',
+      cheapMouseenterCallback: '&'
     },
     templateUrl: function(element, attrs){
       return attrs.templateUrl || 'su.datepicker.templates.suDatepickerMonthDefaultTemplate';
