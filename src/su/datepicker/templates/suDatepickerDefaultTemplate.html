@@ -5,13 +5,18 @@
         <button class="btn btn-xs btn-primary previous" ng-click="moveMonth(-1)">Previous</button>
       </div>
       <div class="col-xs-4 text-center">
-        <strong>{{date.getMonth() | suDatepickerMonthText}}</strong>
+        <strong>{{currentDate.getMonth() | suDatepickerMonthText}}</strong>
       </div>
       <div class="col-xs-4 text-right">
         <button class="btn btn-xs btn-primary next" ng-click="moveMonth(1)">Next</button>
       </div>
     </div>
   </div>
-  <su-datepicker-month-default date="date" click-callback="changeDate(date)" date-disabled="isDateDisabled(date)">
+  <su-datepicker-month-default
+    date="currentDate"
+    click-callback="selectDate(date)"
+    date-disabled="isDateDisabled(date)"
+    custom-class="getDateClass(date)"
+    cheap-mouseenter-callback="setPotentialDate(date)">
   </su-datepicker-month-default>
 </div>

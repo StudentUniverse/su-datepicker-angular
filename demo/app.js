@@ -1,7 +1,8 @@
 angular.module('app', ['su.datepicker'])
-  .controller('rawMonthCtrl', rawMonthCtrl);
+  .controller('rawMonthExampleCtrl', rawMonthExampleCtrl)
+  .controller('defaultDatepickerExampleCtrl', defaultDatepickerExampleCtrl);
 
-function rawMonthCtrl($scope) {
+function rawMonthExampleCtrl($scope) {
   var today = new Date(),
     potentialDate;
   today.setHours(0, 0, 0, 0);
@@ -55,4 +56,8 @@ function rawMonthCtrl($scope) {
     copy.setMonth(copy.getMonth() + diff);
     return copy;
   }
+}
+
+function defaultDatepickerExampleCtrl($scope){
+  $scope.date = new Date();
 }

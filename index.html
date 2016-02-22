@@ -13,7 +13,7 @@
 
 <body ng-app="app">
   <h1>StudentUniverse angular date range picker</h1>
-  <section ng-controller="rawMonthCtrl" style="margin-bottom: 225px;">
+  <section ng-controller="rawMonthExampleCtrl" style="margin-bottom: 225px;">
     <h3>Raw month picker picker</h3>
     <ul>
       <li>date is required and is used to track which month is displayed</li>
@@ -42,6 +42,18 @@
     <p>If you need further customizations you can use su-datepicker-month directive</p>
   </section>
 
+  <section ng-controller="defaultDatepickerExampleCtrl" style="margin-bottom: 225px;">
+    <h3>Default datepicker encompases the raw month picker logic</h3>
+    <ul>
+      <li>the date will not change by changing month</li>
+      <li>date change is expected to be one way using the datepicker</li>
+    </ui>
+    <div>
+      <input type="text" ng-model="date"/>
+    </div>
+    <su-datepicker-default date="date" disable-past></su-datepicker-default>
+    <p>Custom template can be used by adding template-url attribute</p>
+  </section>
 </body>
 
 </html>
