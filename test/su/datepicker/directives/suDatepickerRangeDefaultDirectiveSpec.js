@@ -166,7 +166,8 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
       });
 
       describe('customClass', function(){
-        it('should expose cheapMouseenterCallback which calls parent if invoked', function(){
+        
+        it('should expose custom-class which calls parent if invoked', function(){
           var someDate = new Date(2016, 1, 24);
           $rootScope.date = someDate;
           $rootScope.dateClass = jasmine.createSpy();
