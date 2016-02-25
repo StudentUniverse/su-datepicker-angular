@@ -23,12 +23,44 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js'
+      },
+      dist: {
+        configFile: 'karma.conf.js',
+        files: [
+          {src: [
+            'lib/angular/1.2.29/angular/angular.js',
+            'lib/angular/1.2.29/angular-mocks/angular-mocks.js',
+
+            'dist/su-datepicker.min.js',
+            'test/su/datepicker/directives/*Spec.js',
+            'test/su/datepicker/filters/*Spec.js'
+          ]}
+        ],
+        exclude : [
+          'test/su/datepicker/utilSpec.js'
+        ]
       }
     },
     uglify: {
-    dist: {
-      files: {
+      dist: {
+        files: {
           'dist/su-datepicker.min.js': ['dist/su-datepicker.js']
+        }
+      }
+    },
+    usebanner: {
+      dist: {
+        options: {
+          position: 'top',
+          banner: '/**\n' +
+                  '* @license StudentUniverse su-datepicker <%= pkg.version %>\n' +
+                  '* (c) 2016 StudentUniverse https://www.studentuniverse.com\n' +
+                  '* License: <%= pkg.license %>\n' +
+                  '**/',
+          linebreak: true
+        },
+        files: {
+          src: [ 'dist/su-datepicker*' ]
         }
       }
     },
@@ -64,6 +96,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-banner');
   //grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -74,6 +107,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', ['html2js', 'concat']);
   grunt.registerTask('default', ['build', 'watch']);
-  grunt.registerTask('dist', ['build', 'copy:dist', 'uglify:dist']);
+  grunt.registerTask('dist', ['build', 'copy:dist', 'uglify:dist', 'usebanner:dist']);
   grunt.registerTask('test', ['build', 'karma:unit']);
 };
