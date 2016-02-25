@@ -25,6 +25,13 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js'
       }
     },
+    uglify: {
+    dist: {
+      files: {
+          'dist/su-datepicker.min.js': ['dist/su-datepicker.js']
+        }
+      }
+    },
     watch: {
       //run unit tests with karma (server needs to be already running)
       src: {
@@ -60,12 +67,13 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('build', ['html2js', 'concat']);
   grunt.registerTask('default', ['build', 'watch']);
-  grunt.registerTask('dist', ['build', 'copy:dist']);
+  grunt.registerTask('dist', ['build', 'copy:dist', 'uglify:dist']);
   grunt.registerTask('test', ['build', 'karma:unit']);
 };
