@@ -135,7 +135,7 @@ function suDatepickerDefaultDirective($filter) {
         if(attrs.hasOwnProperty('customClass')){
           return scope.customClass({date: date});
         } else {
-          if (angular.isDate(date)) {
+          if (angular.isDate(date) && angular.isDate(scope.date)) {
             if (scope.date.getFullYear() === date.getFullYear() &&
             scope.date.getMonth() === date.getMonth() &&
             scope.date.getDate() === date.getDate()) {

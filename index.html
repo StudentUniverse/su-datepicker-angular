@@ -9,6 +9,11 @@
   <script src="lib/angular/1.2.29/angular/angular.js"></script>
   <script src="dist/su-datepicker.js"></script>
   <script src="demo/suFlightDatepickerDirective.js"></script>
+
+  <script src="demo/controllers/defaultDatepickerExampleCtrl.js"></script>
+  <script src="demo/controllers/popupDatepickerExampleCtrl.js"></script>
+  <script src="demo/controllers/rangeDatepickerExampleCtrl.js"></script>
+  <script src="demo/controllers/rawMonthExampleCtrl.js"></script>
   <script src="demo/app.js"></script>
 </head>
 
@@ -61,7 +66,7 @@
     <p>Custom template can be used by adding template-url attribute</p>
   </section>
 
-  <section ng-controller="suFlightDatepickerExampleCtrl" style="margin-bottom: 225px;">
+  <section ng-controller="rangeDatepickerExampleCtrl" style="margin-bottom: 225px;">
     <h3>Default date range picker encompases the raw month picker logic</h3>
     <ul>
       <li>the date will not change by changing month</li>
@@ -84,6 +89,30 @@
       next-month-disabled="disableNextMonth(currentDate)"
       previous-month-disabled="disablePreviousMonth(currentDate)"></su-datepicker-range-default>
   </section>
+
+  <section ng-controller="popupDatepickerExampleCtrl" style="margin-bottom: 225px;">
+    <h3>Example popup datepicker</h3>
+    <div>
+      <form>
+        <input type="text"
+          placeholder="destination"
+          ng-model="destination"
+          ng-focus="hideDatepicker()"/>
+        <input type="text"
+          placeholder="select date"
+          ng-model="date"
+          readonly="true"
+          su-datepicker-date-parser
+          ng-focus="showDatepicker()"/>
+          <div style="position: absolute" ng-show="shown">
+            <su-datepicker-default date="date"
+              select-date="dateSelectCallback(date)"
+              disable-past>
+            </su-datepicker-default>
+          </div>
+        <button ng-focus="hideDatepicker()" ng-click="submit()">submit</button>
+      </form>
+    </div>
 </body>
 
 </html>
