@@ -5,3 +5,20 @@
 .potential-date button {
   background: #97CBF7 !important;
 }
+
+
+.su-datepicker-range-start button {
+  background: pink !important;
+}
+
+.su-datepicker-range-end button {
+  background: red !important;
+}
+
+.in-selected-date-range button {
+  background: #428bca !important;
+}
+
+.in-potential-date-range button {
+  background: #97CBF7 !important;
+}

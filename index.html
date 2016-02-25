@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="demo/styles.css"/>
   <script src="lib/angular/1.2.29/angular/angular.js"></script>
   <script src="build/su-datepicker.js"></script>
+  <script src="demo/suFlightDatepickerDirective.js"></script>
   <script src="demo/app.js"></script>
 </head>
 
@@ -25,7 +26,7 @@
       </li>
     </ul>
     <div>
-      <input type="text" ng-model="date" readonly="true"/>
+      <input type="text" ng-model="date" readonly="true" su-datepicker-date-parser/>
     </div>
     <div>
       <button ng-click="previousMonth()">Previous</button>
@@ -48,12 +49,40 @@
       <li>the date will not change by changing month</li>
       <li>date change is expected to be one way using the datepicker</li>
       <li>using disable-past attribute will disable dates less than today</li>
+      <li>custom date disabled logic can be used by supplying a is-date-disabled callback</li>
+      <li>custom date click callback can be used by supplying a select-date callback</li>
+      <li>custom mouseenter logic can be used by supplying cheap-mouseenter-callback</li>
+      <li>custom date class logic can be used by supplying custom-class callback</li>
     </ui>
     <div>
-      <input type="text" ng-model="date" readonly="true"/>
+      <input type="text" ng-model="date" readonly="true" su-datepicker-date-parser/>
     </div>
     <su-datepicker-default date="date" disable-past></su-datepicker-default>
     <p>Custom template can be used by adding template-url attribute</p>
+  </section>
+
+  <section ng-controller="suFlightDatepickerExampleCtrl" style="margin-bottom: 225px;">
+    <h3>Default date range picker encompases the raw month picker logic</h3>
+    <ul>
+      <li>the date will not change by changing month</li>
+      <li>date change is expected to be one way using the datepicker</li>
+      <li>using disable-past attribute will disable dates less than today</li>
+      <li>custom date disabled logic can be used by supplying a is-date-disabled callback</li>
+      <li>custom date click callback can be used by supplying a select-date callback</li>
+      <li>custom mouseenter logic can be used by supplying cheap-mouseenter-callback</li>
+      <li>custom date class logic can be used by supplying custom-class callback</li>
+    </ui>
+    <div>
+      <label>start:<input type="text" ng-model="start" readonly="true" su-datepicker-date-parser/></label>
+      <label>end:<input type="text" ng-model="end" readonly="true" su-datepicker-date-parser/></label>
+    </div>
+    <su-datepicker-range-default start-date="start"
+      is-date-disabled="isDateDisabled(date)"
+      on-date-select="onDateSelect(date)"
+      cheap-mouseenter-callback="setPotentialDate(date)"
+      custom-class="getDateClass(date)"
+      next-month-disabled="disableNextMonth(currentDate)"
+      previous-month-disabled="disablePreviousMonth(currentDate)"></su-datepicker-range-default>
   </section>
 </body>
 
