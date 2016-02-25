@@ -2,13 +2,17 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-4">
-        <button class="btn btn-xs btn-primary previous" ng-click="moveMonth(-1)">Previous</button>
+        <button class="btn btn-xs btn-primary previous"
+          ng-click="moveMonth(-1)"
+          ng-disabled="previousMonthDisabled({currentDate: currentDate})">Previous</button>
       </div>
       <div class="col-xs-4 text-center">
         <strong>{{currentDate.getMonth() | suDatepickerMonthText}}</strong>
       </div>
       <div class="col-xs-4 text-right">
-        <button class="btn btn-xs btn-primary next" ng-click="moveMonth(1)">Next</button>
+        <button class="btn btn-xs btn-primary next"
+          ng-click="moveMonth(1)"
+          ng-disabled="nextMonthDisabled({currentDate: currentDate})">Next</button>
       </div>
     </div>
   </div>

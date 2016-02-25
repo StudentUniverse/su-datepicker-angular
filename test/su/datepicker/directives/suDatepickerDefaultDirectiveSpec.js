@@ -12,6 +12,18 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
       expect($injector.has('suDatepickerDefaultDirective')).toBe(true);
     }));
 
+    it('should blow up if date attribute is not present', function(){
+      var element = $compile('<su-datepicker-default></su-datepicker-default>')($rootScope);
+      var thrownException;
+      try {
+        $rootScope.$digest();
+      } catch(exception){
+        thrownException = exception;
+      }
+
+      expect(thrownException).toEqual('su.datepicker.directives.suDatepickerDefault: name attribute is required');
+    });
+
     it('should be able to use custom template', inject(function($templateCache){
       var templateContents = '<h1>foo</h1>';
       $templateCache.put('customTemplate.html', templateContents);
@@ -117,6 +129,21 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         expect(childScope.isDateDisabled(today)).toEqual(false);
         expect(childScope.isDateDisabled(yesterday)).toEqual(false);
       });
+
+      it('should support cutom isDateDisabled callback', function(){
+        var someDate = new Date(2016, 1, 24);
+        var daysInmonth = 29;
+        $rootScope.date = someDate;
+        $rootScope.customDateDisabledCallback = jasmine.createSpy();
+
+        var element = $compile('<su-datepicker-default date="date" is-date-disabled="customDateDisabledCallback(date)"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        expect($rootScope.customDateDisabledCallback).toHaveBeenCalledWith(jasmine.any(Date));
+      });
     });
 
     describe('selectDate', function(){
@@ -136,6 +163,26 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         expect($rootScope.today.getFullYear()).toEqual(tomorow.getFullYear());
         expect($rootScope.today.getMonth()).toEqual(tomorow.getMonth());
         expect($rootScope.today.getDate()).toEqual(tomorow.getDate());
+      });
+
+      it('should support override by on-date-select attribute', function(){
+        var someDate = new Date(2016, 1, 24);
+        $rootScope.date = someDate;
+        $rootScope.dateSelect = jasmine.createSpy();
+
+        var element = $compile('<su-datepicker-default date="date" select-date="dateSelect(date)"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        var selectedDate = new Date();
+        childScope.selectDate(selectedDate);
+        var callbackArgs = $rootScope.dateSelect.calls.argsFor(0)[0];
+        expect(angular.isDate(callbackArgs)).toBe(true);
+        expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+        expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+        expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
       });
     });
 
@@ -162,6 +209,26 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         scopeSpy = spyOn(childScope, '$digest');
         childScope.setPotentialDate(new Date());
         expect(scopeSpy).toHaveBeenCalled();
+      });
+
+      it('cheap-mouseenter-callback attribute should override setpotentialDate', function(){
+        var someDate = new Date(2016, 1, 24);
+        $rootScope.date = someDate;
+        $rootScope.mouseEnter = jasmine.createSpy();
+
+        var element = $compile('<su-datepicker-default date="date" cheap-mouseenter-callback="mouseEnter(date)"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        var selectedDate = new Date();
+        childScope.setPotentialDate(selectedDate);
+        var callbackArgs = $rootScope.mouseEnter.calls.argsFor(0)[0];
+        expect(angular.isDate(callbackArgs)).toBe(true);
+        expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+        expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+        expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
       });
     });
 
@@ -200,6 +267,70 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
 
         childScope.setPotentialDate(dateCopy);
         expect(childScope.getDateClass(dateCopy)).toEqual('potential-date');
+      });
+
+      it('custom-class attribute should override getDateClass', function(){
+        var someDate = new Date(2016, 1, 24);
+        $rootScope.date = someDate;
+        $rootScope.dateClass = jasmine.createSpy();
+
+        var element = $compile('<su-datepicker-default date="date" custom-class="dateClass(date)"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        var selectedDate = new Date();
+        childScope.getDateClass(selectedDate);
+        var callbackArgs = $rootScope.dateClass.calls.argsFor($rootScope.dateClass.calls.count() - 1)[0];
+        expect(angular.isDate(callbackArgs)).toBe(true);
+        expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+        expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+        expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
+      });
+    });
+
+    describe('previousMonthDisabled', function(){
+      it('should expose previousMonthDisabled which calls parent if invoked', function(){
+        var someDate = new Date(2016, 1, 24);
+        $rootScope.date = someDate;
+        $rootScope.isMonthDisabled = jasmine.createSpy();
+
+        var element = $compile('<su-datepicker-default date="date" previous-month-disabled="isMonthDisabled(date)"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        var selectedDate = new Date();
+        childScope.previousMonthDisabled({date: selectedDate});
+        var callbackArgs = $rootScope.isMonthDisabled.calls.argsFor($rootScope.isMonthDisabled.calls.count() - 1)[0];
+        expect(angular.isDate(callbackArgs)).toBe(true);
+        expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+        expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+        expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
+      });
+    });
+
+    describe('nextMonthDisabled', function(){
+      it('should expose nextMonthDisabled which calls parent if invoked', function(){
+        var someDate = new Date(2016, 1, 24);
+        $rootScope.date = someDate;
+        $rootScope.isMonthDisabled = jasmine.createSpy();
+
+        var element = $compile('<su-datepicker-default date="date" next-month-disabled="isMonthDisabled(date)"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        var selectedDate = new Date();
+        childScope.nextMonthDisabled({date: selectedDate});
+        var callbackArgs = $rootScope.isMonthDisabled.calls.argsFor($rootScope.isMonthDisabled.calls.count() - 1)[0];
+        expect(angular.isDate(callbackArgs)).toBe(true);
+        expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+        expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+        expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
       });
     });
 });
