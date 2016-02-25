@@ -13,6 +13,12 @@ module.exports = function(grunt) {
         dest: 'build/su-datepicker.js',
       },
     },
+    copy: {
+      dist: {
+        src: 'build/su-datepicker.js',
+        dest: 'dist/su-datepicker.js'
+      },
+    },
     //clean: ['build'],
     karma: {
       unit: {
@@ -53,12 +59,13 @@ module.exports = function(grunt) {
 
   //grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('build', ['html2js', 'concat']);
   grunt.registerTask('default', ['build', 'watch']);
-
+  grunt.registerTask('dist', ['build', 'copy:dist']);
   grunt.registerTask('test', ['build', 'karma:unit']);
 };
