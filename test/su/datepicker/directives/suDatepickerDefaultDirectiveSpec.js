@@ -244,6 +244,17 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         expect(typeof childScope.getDateClass).toEqual('function');
       });
 
+      it('should return undefined if date is not set', function(){
+        $rootScope.date = undefined;
+        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        expect(childScope.getDateClass(new Date())).toBeUndefined();
+      });
+
       it('should return "active-date" if the passed in date matches the scope date', function(){
         $rootScope.date = new Date();
         var dateCopy = new Date($rootScope.date.getFullYear(), $rootScope.date.getMonth(), $rootScope.date.getDate());
