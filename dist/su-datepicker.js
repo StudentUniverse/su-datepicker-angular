@@ -1,3 +1,8 @@
+/**
+* @license StudentUniverse su-datepicker 0.0.1
+* (c) 2016 StudentUniverse https://www.studentuniverse.com
+* License: ISC
+**/
 (function(){
 'use strict';
 angular.module('su.datepicker.directives.suDatepickerCheapEventDirective', [])
