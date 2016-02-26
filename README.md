@@ -1,5 +1,5 @@
 # su-datepicker-angular
-Flexible angular date range picker without dependencies. For a demo visit [https://github.io/StudentUniverse/su-datepicker-angular](https://github.io/StudentUniverse/su-datepicker-angular)
+Flexible angular date range picker without dependencies. For a demo visit [https://github.io/StudentUniverse/su-datepicker-angular](http://studentuniverse.github.io/su-datepicker-angular/)
 
 ## Use
 This package is intended to be used with [angular](https://angularjs.org/) 1.x.
