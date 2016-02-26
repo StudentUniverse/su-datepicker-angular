@@ -1,34 +1,27 @@
 <div class="datepicker datepicker-range">
-
   <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-sm-6">
-  
-          <div class="row">
-            <div class="col-xs-4">
-              <button class="previous"
-                ng-click="moveMonth(-1)"
-                ng-disabled="previousMonthDisabled({currentDate: currentDateOne})">&laquo;</button>
-            </div>
-            <div class="col-xs-4 text-center">
-                <strong>{{currentDateOne.getMonth() | suDatepickerMonthText}}</strong>
-            </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="row">
+          <div class="col-xs-4">
+            <button class="previous"
+              ng-click="moveMonth(-1)"
+              ng-disabled="previousMonthDisabled({currentDate: currentDateOne})">&laquo;</button>
           </div>
-
-          <div class="row">
-            <div class="col-xs-12">
-              <su-datepicker-month-default
-                date="currentDateOne"
-                click-callback="onDateSelect({date: date})"
-                date-disabled="isDateDisabled(date)"
-                custom-class="customClass({date: date})"
-                cheap-mouseenter-callback="cheapMouseenterCallback({date: date})">
-              </su-datepicker-month-default>
-            </div>
+          <div class="col-xs-4 text-center">
+              <strong>{{currentDateOne.getMonth() | suDatepickerMonthText}}</strong>
+          </div>
+          <div>
+            <su-datepicker-month-default
+              date="currentDateOne"
+              click-callback="onDateSelect({date: date})"
+              date-disabled="isDateDisabled(date)"
+              custom-class="customClass({date: date})"
+              cheap-mouseenter-callback="cheapMouseenterCallback({date: date})">
+            </su-datepicker-month-default>
           </div>
         </div>
       </div>
-  
       <div class="col-xs-12 col-sm-6">
         <div class="row">
           <div class="col-xs-4 col-xs-offset-4 text-center">
