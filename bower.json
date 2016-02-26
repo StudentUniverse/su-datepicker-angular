@@ -1,0 +1,24 @@
+{
+  "name": "su-angular-date-range",
+  "version": "0.0.1",
+  "homepage": "https://github.com/StudentUniverse/su-angular-date-range",
+  "authors": [
+    "StudentUniverse"
+  ],
+  "description": "flexible angular date range picker without dependencies",
+  "main": "dist/su-datepicker.min.js",
+  "keywords": [
+    "studentuniverse",
+    "datepicker",
+    "range",
+    "angular"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
