@@ -1,24 +1,55 @@
-.active-date button {
-  background: #428bca !important;
+h1 {
+	margin-bottom: 30px;
 }
 
-.potential-date button {
-  background: #97CBF7 !important;
+form, h3, ul,
+section:not([ng-controller="popupDatepickerExampleCtrl"]) .datepicker {
+	margin-bottom: 20px;
 }
 
-
-.su-datepicker-range-start button {
-  background: pink !important;
+section[ng-controller] {
+	margin-bottom: 3em;
 }
 
-.su-datepicker-range-end button {
-  background: red !important;
+section[ng-controller]:nth-last-of-type(1) {
+	margin-bottom: 30em;
 }
 
-.in-selected-date-range button {
-  background: #428bca !important;
+.datepicker-default, .datepicker-range  {
+	width: 252px;
 }
 
+@media (min-width: 768px) { 
+	.datepicker-range {
+		width: 544px;
+	}
+}
+
+.btn[disabled] {
+	background-color: #eee;
+}
+
+.active-date button,
+.potential-date button,
 .in-potential-date-range button {
-  background: #97CBF7 !important;
+	background: #97CBF7 !important;
+}
+
+.btn-default:hover, .btn-default:focus,
+.in-selected-date-range button {
+	background: #428bca !important;
+}
+
+.btn-default:hover, .btn-default:focus,
+.in-selected-date-range button,
+.in-selected-date-range button:hover,
+.in-selected-date-range button:focus {
+	color: #fff;
+}
+
+.popup-datepicker {
+    border: 1px solid rgba(0,0,0,0.15);
+    box-sizing: content-box;
+    padding: 5px;
+   	position: absolute;
 }
