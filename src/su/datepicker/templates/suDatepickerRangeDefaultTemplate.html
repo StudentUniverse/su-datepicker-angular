@@ -1,40 +1,55 @@
-<div class="calendar-table">
+<div class="datepicker datepicker-range">
+
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-4">
-        <button class="btn btn-xs btn-primary previous"
-          ng-click="moveMonth(-1)"
-          ng-disabled="previousMonthDisabled({currentDate: currentDateOne})">Previous</button>
+        <div class="col-xs-12 col-sm-6">
+  
+          <div class="row">
+            <div class="col-xs-4">
+              <button class="previous"
+                ng-click="moveMonth(-1)"
+                ng-disabled="previousMonthDisabled({currentDate: currentDateOne})">&laquo;</button>
+            </div>
+            <div class="col-xs-4 text-center">
+                <strong>{{currentDateOne.getMonth() | suDatepickerMonthText}}</strong>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <su-datepicker-month-default
+                date="currentDateOne"
+                click-callback="onDateSelect({date: date})"
+                date-disabled="isDateDisabled(date)"
+                custom-class="customClass({date: date})"
+                cheap-mouseenter-callback="cheapMouseenterCallback({date: date})">
+              </su-datepicker-month-default>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-4 text-right">
-        <button class="btn btn-xs btn-primary next"
-          ng-click="moveMonth(1)"
-          ng-disabled="nextMonthDisabled({currentDate: currentDateTwo})">Next</button>
+  
+      <div class="col-xs-12 col-sm-6">
+        <div class="row">
+          <div class="col-xs-4 col-xs-offset-4 text-center">
+              <strong>{{currentDateTwo.getMonth() | suDatepickerMonthText}}</strong>
+          </div>
+          <div class="col-xs-4 text-right">
+            <button class="next"
+              ng-click="moveMonth(1)"
+              ng-disabled="nextMonthDisabled({currentDate: currentDateTwo})">&raquo;</button>
+          </div>
+          <div>
+            <su-datepicker-month-default
+              date="currentDateTwo"
+              click-callback="onDateSelect({date: date})"
+              date-disabled="isDateDisabled(date)"
+              custom-class="customClass({date: date})"
+              cheap-mouseenter-callback="cheapMouseenterCallback({date: date})">
+            </su-datepicker-month-default>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div>
-    <div class="col-xs-4 text-center">
-      <strong>{{currentDateOne.getMonth() | suDatepickerMonthText}}</strong>
-    </div>
-    <su-datepicker-month-default
-      date="currentDateOne"
-      click-callback="onDateSelect({date: date})"
-      date-disabled="isDateDisabled(date)"
-      custom-class="customClass({date: date})"
-      cheap-mouseenter-callback="cheapMouseenterCallback({date: date})">
-    </su-datepicker-month-default>
-  </div>
-  <div>
-    <div class="col-xs-4 text-center">
-      <strong>{{currentDateTwo.getMonth() | suDatepickerMonthText}}</strong>
-    </div>
-    <su-datepicker-month-default
-      date="currentDateTwo"
-      click-callback="onDateSelect({date: date})"
-      date-disabled="isDateDisabled(date)"
-      custom-class="customClass({date: date})"
-      cheap-mouseenter-callback="cheapMouseenterCallback({date: date})">
-    </su-datepicker-month-default>
   </div>
 </div>
