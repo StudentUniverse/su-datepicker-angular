@@ -19,6 +19,13 @@ module.exports = function(grunt) {
         dest: 'dist/su-datepicker.js'
       },
     },
+    cssmin: {
+      dist: {
+        files: {
+          'dist/su-datepicker.min.css': ['dist/su-datepicker.css']
+        }
+      }
+    },
     //clean: ['build'],
     karma: {
       unit: {
@@ -100,6 +107,7 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-html2js');
@@ -107,6 +115,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', ['html2js', 'concat']);
   grunt.registerTask('default', ['build', 'watch']);
-  grunt.registerTask('dist', ['build', 'copy:dist', 'uglify:dist', 'usebanner:dist']);
+  grunt.registerTask('dist', ['build', 'copy:dist', 'uglify:dist',
+    'cssmin:dist', 'usebanner:dist']);
   grunt.registerTask('test', ['build', 'karma:unit']);
 };
