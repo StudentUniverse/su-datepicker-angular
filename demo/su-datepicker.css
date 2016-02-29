@@ -1,7 +1,7 @@
 
 @media (min-width: 768px) { 
 	.su-datepicker-month-wrap .datepicker-range {
-		width: 540px;
+		width: 580px;
 	}
 }
 
@@ -20,16 +20,16 @@
 }
 
 .su-datepicker-month-wrap .datepicker .back {
-	bottom: 50%;
 	left: -35px;
 	padding: 0;
 	position: absolute;
+	top: 50%;
 	transform: scale(2);
 	width: 0;
 }
 
 .su-datepicker-range-wrap.su-datepicker-month-wrap .datepicker .back {
-	left: -45px;
+	left: -30px;
 }
 
 .su-datepicker-month-wrap .datepicker .month {
@@ -43,26 +43,33 @@
 }
 
 .su-datepicker-month-wrap .datepicker .forward {
-	bottom: 50%;
 	padding: 0;
 	position: absolute;
 	right: 5px;
+	top: 50%;
 	transform: scale(2);
 	width: 0;
 }
 
 .su-datepicker-range-wrap.su-datepicker-month-wrap .datepicker .forward {
-	right: -5px;
+	right: 10px;
+}
+
+@media (min-width: 768px) { 
+	.su-datepicker-range-wrap.su-datepicker-month-wrap .datepicker .row .col-xs-12:nth-of-type(1) {
+		border-right: 1px solid #ccc;
+		padding-left: 21px;
+	}
 }
 
 .su-datepicker-month-wrap .datepicker .back button,
 .su-datepicker-month-wrap .datepicker .forward button {
 	background: #fff;
-	border: .5px solid #d3e8b3;
+	border: 1px solid #d3e8b3;
 	border-radius: 50%;
 	color: #d3e8b3;
     height: 20px;
-    line-height: .25;
+    line-height: 0;
     transition: all 0.2s ease-in-out;
 	width: 20px;
 }
@@ -114,6 +121,10 @@
 .su-datepicker-month-wrap .datepicker .open .dropdown-toggle.btn-default,
 .su-datepicker-month-wrap .datepicker .in-potential-date-range button {
     background: rgba(108,177,0,0.2) !important;
+}
+
+.su-datepicker-month-wrap .datepicker .btn-default:hover {
+	color: #6cb100;
 }
 
 .su-datepicker-month-wrap .datepicker .btn-default:focus,
