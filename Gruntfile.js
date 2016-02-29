@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         footer: '})();'
       },
       build: {
-        src: ['src/su/datepicker/**/*.js', 'tmp/templates.js'],
+        src: ['src/su/datepicker/**/*.js', 'build/templates.js'],
         dest: 'build/su-datepicker.js',
       },
     },
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
       },
       main: {
         src: ['src/**/*.html'],
-        dest: 'tmp/templates.js'
+        dest: 'build/templates.js'
       },
     }
   });
