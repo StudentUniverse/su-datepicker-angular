@@ -42,6 +42,7 @@
   <script src="demo/controllers/popupDatepickerExampleCtrl.js"></script>
   <script src="demo/controllers/rangeDatepickerExampleCtrl.js"></script>
   <script src="demo/controllers/rawMonthExampleCtrl.js"></script>
+  <script src="demo/directives/suClickTrapDirective.js"></script>
   <script src="demo/app.js"></script>
 </head>
 
@@ -149,22 +150,25 @@
                 class="form-control"
                 placeholder="destination"
                 ng-model="destination"
-                ng-focus="hideDatepicker()"/>
+                ng-focus="console.log('destination focus'); hideDatepicker()"/>
             </div>
             <div class="form-group" style="position: relative;">
-              <input type="text"
-                class="form-control"
-                placeholder="select date"
-                ng-model="date"
-                readonly="true"
-                su-datepicker-date-parser
-                ng-focus="showDatepicker()"/>
-                <div class="popup-datepicker su-datepicker-month-wrap" ng-show="shown">
+              <su-click-trap>
+                <input type="text"
+                  class="form-control"
+                  placeholder="select date"
+                  ng-model="date"
+                  readonly="true"
+                  su-datepicker-date-parser
+                  su-click-trap
+                  ng-focus="console.log('date focus'); showDatepicker()"/>
+                <div class="popup-datepicker su-datepicker-month-wrap" ng-show="shown" su-click-trap>
                   <su-datepicker-default date="date"
                     select-date="dateSelectCallback(date)"
                     disable-past>
                   </su-datepicker-default>
                 </div>
+              </su-click-trap>
             </div>
             <button class="btn btn-default btn-sm" ng-focus="hideDatepicker()" ng-click="submit()">Submit</button>
           </form>

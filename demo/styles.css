@@ -19,11 +19,15 @@ section[ng-controller]:nth-last-of-type(1) {
 	margin-bottom: 30em;
 }
 
+.form-control[readonly] {
+	cursor: pointer;
+}
+
 .datepicker-default, .datepicker-range  {
 	width: 252px;
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 	.datepicker-range {
 		width: 544px;
 	}

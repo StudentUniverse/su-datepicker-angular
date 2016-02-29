@@ -4,11 +4,15 @@ function popupDatepickerExampleCtrl($scope, $document){
   $scope.shown = false;
 
   $scope.showDatepicker = function(){
-    $scope.shown = true;
+    if(!$scope.shown){
+      $scope.shown = true;
+    }
   };
 
   $scope.hideDatepicker = function(){
-    $scope.shown = false;
+    if($scope.shown){
+      $scope.shown = false;
+    }
   };
 
   $scope.dateSelectCallback = function(date){
@@ -19,4 +23,18 @@ function popupDatepickerExampleCtrl($scope, $document){
   $scope.submit = function(){
     alert('going to ' + $scope.destination + ' on ' + $scope.date);
   };
+
+  // if anywhere otuside the datepicker(su-click-trap) is clicked
+  // close the datepicker
+  $document.on('click', closeDatepickerOnClick);
+
+  function closeDatepickerOnClick(){
+    $scope.hideDatepicker();
+    $scope.$digest();
+  }
+
+  // clean up after ourselves if the controller scope is destroyed
+  $scope.$on('$destroy', function(){
+    $document.off('click', closeDatepickerOnClick);
+  });
 }
