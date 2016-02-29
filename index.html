@@ -6,6 +6,7 @@
   <title>SU datepicker demo</title>
   <link rel="stylesheet" href="lib/bootstrap/3.1.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="demo/styles.css"/>
+  <link rel="stylesheet" href="demo/su-datepicker.css"/>
   <script src="lib/angular/1.2.29/angular/angular.js"></script>
   <script src="dist/su-datepicker.js"></script>
   <script src="demo/suFlightDatepickerDirective.js"></script>
@@ -75,7 +76,7 @@
               <input type="text" class="form-control" ng-model="date" readonly="true" su-datepicker-date-parser/>
             </div>
           </form>
-          <div>
+          <div class="su-datepicker-month-wrap">
             <su-datepicker-default date="date" disable-past></su-datepicker-default>
           </div>
           <p>Custom template can be used by adding template-url attribute.</p>
@@ -102,7 +103,7 @@
               <input type="text" class="form-control" ng-model="end" readonly="true" su-datepicker-date-parser/>
             </div>
           </form>
-          <div>
+          <div class="su-datepicker-month-wrap su-datepicker-range-wrap">
             <su-datepicker-range-default start-date="start"
               is-date-disabled="isDateDisabled(date)"
               on-date-select="onDateSelect(date)"
@@ -131,7 +132,7 @@
                 readonly="true"
                 su-datepicker-date-parser
                 ng-focus="showDatepicker()"/>
-                <div class="popup-datepicker" ng-show="shown">
+                <div class="popup-datepicker su-datepicker-month-wrap" ng-show="shown">
                   <su-datepicker-default date="date"
                     select-date="dateSelectCallback(date)"
                     disable-past>
