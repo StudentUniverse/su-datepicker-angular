@@ -30,7 +30,7 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
         var today = new Date();
         $rootScope.startDate = undefined;
 
-        var element = $compile('<su-datepicker-range-default start-date="start"></su-datepicker-range-default>')($rootScope);
+        var element = $compile('<su-datepicker-range-default start-date="startDate"></su-datepicker-range-default>')($rootScope);
         $rootScope.$digest();
 
         var childElement = angular.element(element.children()[0]);
@@ -43,8 +43,13 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
         expect(childScope.currentDateOne.getDate()).toEqual(today.getDate());
 
         expect(angular.isDate(childScope.currentDateTwo)).toBe(true);
-        expect(childScope.currentDateTwo.getFullYear()).toBe(2016);
-        expect(childScope.currentDateTwo.getMonth()).toBe(2); //should be next month
+        if(childScope.currentDateOne.getMonth() === 11){
+          expect(childScope.currentDateTwo.getFullYear()).toBe(childScope.currentDateOne.getFullYear() + 1);
+          expect(childScope.currentDateTwo.getMonth()).toBe(1);
+        } else {
+          expect(childScope.currentDateTwo.getFullYear()).toBe(childScope.currentDateOne.getFullYear());
+          expect(childScope.currentDateTwo.getMonth()).toBe(childScope.currentDateOne.getMonth() + 1);
+        }
         expect(childScope.currentDateTwo.getDate()).toBe(1);
       });
 
@@ -166,7 +171,7 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
       });
 
       describe('customClass', function(){
-        
+
         it('should expose custom-class which calls parent if invoked', function(){
           var someDate = new Date(2016, 1, 24);
           $rootScope.date = someDate;
