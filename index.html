@@ -52,7 +52,7 @@
       <div class="col-xs-12">
         <h1>StudentUniverse angular date range picker</h1>
         <section ng-controller="rawMonthExampleCtrl">
-          <h3>Raw month picker picker</h3>
+          <h3>Raw month picker picker(su-datepicker-month-default)</h3>
           <ul>
             <li><code>date</code> is required and is used to track which month is displayed.</li>
             <li><code>clickCallback</code> will be called with the date that was clicked.</li>
@@ -89,7 +89,7 @@
         </section>
         <hr/>
         <section ng-controller="defaultDatepickerExampleCtrl">
-          <h3>Default datepicker encompasses the raw month picker logic</h3>
+          <h3>Default datepicker encompasses the raw month picker logic(su-datepicker-default)</h3>
           <ul>
             <li>The date will not change by changing month.</li>
             <li>Date change is expected to be one way using the datepicker.</li>
@@ -111,7 +111,7 @@
         </section>
         <hr/>
         <section ng-controller="rangeDatepickerExampleCtrl">
-          <h3>Default date range picker encompasses the raw month picker logic</h3>
+          <h3>Default date range picker encompasses the raw month picker logic(su-datepicker-range-default)</h3>
           <ul>
             <li>The date will not change by changing month.</li>
             <li>Date change is expected to be one way using the datepicker.</li>
@@ -144,6 +144,12 @@
         <hr/>
         <section ng-controller="popupDatepickerExampleCtrl">
           <h3>Example popup datepicker</h3>
+          <p>Logic for opening and closing a datepicker popup is business specific.
+            It's fairly easy to wrap a datepicker in a popup as the following example shows.
+            The popup opens when the date field gets focus either by tabbing or clicking.
+            If either the destination or submit get focus, or there's a click otside the datepicker
+            the popup will close.
+          </p>
           <form class="form-inline">
             <div class="form-group">
               <input type="text"
