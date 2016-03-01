@@ -6,7 +6,7 @@
       ng-disabled="previousMonthDisabled({currentDate: currentDate})">&laquo;</button>
   </div>
   <div class="col-xs-4 month text-center">
-    <strong>{{currentDate.getMonth() | suDatepickerMonthText}}</strong>
+    <strong ng-bind="header(currentDate)"></strong>
   </div>
   <div class="col-xs-4 forward text-right">
     <button class="next"

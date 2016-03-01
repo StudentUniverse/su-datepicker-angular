@@ -1,4 +1,5 @@
 angular.module('su.datepicker.directives.suDatepickerDefaultDirective', [
+  'su.datepicker.filters.suDatepickerMonthTextFilter',
     'su.datepicker.filters.suTimeNeutralDateCompareFilter'
   ])
   .directive('suDatepickerDefault', suDatepickerDefaultDirective);
@@ -6,7 +7,9 @@ angular.module('su.datepicker.directives.suDatepickerDefaultDirective', [
 suDatepickerDefaultDirective.$inject = ['$filter'];
 
 function suDatepickerDefaultDirective($filter) {
-  var suTimeNeutralDateCompareFilter = $filter('suTimeNeutralDateCompare');
+  var suTimeNeutralDateCompareFilter = $filter('suTimeNeutralDateCompare'),
+      suDatepickerMonthTextFilter = $filter('suDatepickerMonthText');
+
   return {
     restrict: 'E',
     templateUrl: function(element, attrs) {
@@ -19,7 +22,8 @@ function suDatepickerDefaultDirective($filter) {
       cheapMouseenterCallback: '&',
       customClass: '&',
       previousMonthDisabled: '&',
-      nextMonthDisabled: '&'
+      nextMonthDisabled: '&',
+      header: '&'
     },
     link: function(scope, element, attrs) {
       if(!attrs.hasOwnProperty('date')){
@@ -90,6 +94,20 @@ function suDatepickerDefaultDirective($filter) {
           }
         }
       };
+
+      if(attrs.hasOwnProperty('header')){
+        var originalHeader = scope.header;
+        scope.header = function(date){
+          return originalHeader({date: date});
+        };
+      } else {
+        scope.header = function(date) {
+          if(angular.isDate(date)){
+            var monthText = suDatepickerMonthTextFilter(date.getMonth());
+            return monthText + ' ' + date.getFullYear();
+          }
+        };
+      }
     }
   };
 }
