@@ -30,7 +30,7 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
         var today = new Date();
         $rootScope.startDate = undefined;
 
-        var element = $compile('<su-datepicker-range-default start-date="start"></su-datepicker-range-default>')($rootScope);
+        var element = $compile('<su-datepicker-range-default start-date="startDate"></su-datepicker-range-default>')($rootScope);
         $rootScope.$digest();
 
         var childElement = angular.element(element.children()[0]);
@@ -43,8 +43,13 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
         expect(childScope.currentDateOne.getDate()).toEqual(today.getDate());
 
         expect(angular.isDate(childScope.currentDateTwo)).toBe(true);
-        expect(childScope.currentDateTwo.getFullYear()).toBe(2016);
-        expect(childScope.currentDateTwo.getMonth()).toBe(2); //should be next month
+        if(childScope.currentDateOne.getMonth() === 11){
+          expect(childScope.currentDateTwo.getFullYear()).toBe(childScope.currentDateOne.getFullYear() + 1);
+          expect(childScope.currentDateTwo.getMonth()).toBe(1);
+        } else {
+          expect(childScope.currentDateTwo.getFullYear()).toBe(childScope.currentDateOne.getFullYear());
+          expect(childScope.currentDateTwo.getMonth()).toBe(childScope.currentDateOne.getMonth() + 1);
+        }
         expect(childScope.currentDateTwo.getDate()).toBe(1);
       });
 
@@ -166,7 +171,7 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
       });
 
       describe('customClass', function(){
-        
+
         it('should expose custom-class which calls parent if invoked', function(){
           var someDate = new Date(2016, 1, 24);
           $rootScope.date = someDate;
@@ -225,6 +230,42 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
           var selectedDate = new Date();
           childScope.nextMonthDisabled({date: selectedDate});
           var callbackArgs = $rootScope.isMonthDisabled.calls.argsFor($rootScope.isMonthDisabled.calls.count() - 1)[0];
+          expect(angular.isDate(callbackArgs)).toBe(true);
+          expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+          expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+          expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
+        });
+      });
+
+      describe('header', function(){
+        it('it should default to 3 letter month and 4 digit year', function(){
+          $rootScope.date = undefined;
+
+          var element = $compile('<su-datepicker-range-default start-date="date"></su-datepicker-range-default>')($rootScope);
+          $rootScope.$digest();
+
+          var childElement = angular.element(element.children()[0]);
+          var childScope = childElement.scope();
+
+          var selectedDate = new Date(2016, 1, 24);
+          expect(childScope.header(selectedDate)).toEqual('Feb 2016');
+        });
+
+        it('should expose custom-class which calls parent if invoked', function(){
+          var someDate = new Date(2016, 1, 24);
+          $rootScope.date = someDate;
+          $rootScope.getHeaderText = jasmine.createSpy();
+
+          var element = $compile('<su-datepicker-range-default start-date="date" header="getHeaderText(date)"></su-datepicker-range-default>')($rootScope);
+          $rootScope.$digest();
+
+          var childElement = angular.element(element.children()[0]);
+          var childScope = childElement.scope();
+
+          var selectedDate = new Date();
+          childScope.header(selectedDate);
+          var lastCallIndex = $rootScope.getHeaderText.calls.count() - 1;
+          var callbackArgs = $rootScope.getHeaderText.calls.argsFor(lastCallIndex)[0];
           expect(angular.isDate(callbackArgs)).toBe(true);
           expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
           expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());

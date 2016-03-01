@@ -1,15 +1,14 @@
 <div class="datepicker datepicker-range">
-  <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-        <div class="row">
-          <div class="col-xs-4">
+          <div class="col-xs-4 back">
             <button class="previous"
+              tabindex="-1"
               ng-click="moveMonth(-1)"
               ng-disabled="previousMonthDisabled({currentDate: currentDateOne})">&laquo;</button>
           </div>
-          <div class="col-xs-4 text-center">
-              <strong>{{currentDateOne.getMonth() | suDatepickerMonthText}}</strong>
+          <div class="col-xs-4 month text-center">
+              <strong ng-bind="header(currentDateOne)"></strong>
           </div>
           <div>
             <su-datepicker-month-default
@@ -20,15 +19,14 @@
               cheap-mouseenter-callback="cheapMouseenterCallback({date: date})">
             </su-datepicker-month-default>
           </div>
-        </div>
       </div>
       <div class="col-xs-12 col-sm-6">
-        <div class="row">
-          <div class="col-xs-4 col-xs-offset-4 text-center">
-              <strong>{{currentDateTwo.getMonth() | suDatepickerMonthText}}</strong>
+          <div class="col-xs-4 col-xs-offset-4 month text-center">
+              <strong ng-bind="header(currentDateTwo)"></strong>
           </div>
-          <div class="col-xs-4 text-right">
+          <div class="col-xs-4 forward text-right">
             <button class="next"
+              tabindex="-1"
               ng-click="moveMonth(1)"
               ng-disabled="nextMonthDisabled({currentDate: currentDateTwo})">&raquo;</button>
           </div>
@@ -42,7 +40,5 @@
             </su-datepicker-month-default>
           </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

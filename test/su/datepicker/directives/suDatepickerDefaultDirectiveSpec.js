@@ -344,4 +344,40 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
       });
     });
+
+    describe('header', function(){
+      it('it should default to 3 letter month and 4 digit year', function(){
+        $rootScope.date = undefined;
+
+        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        var selectedDate = new Date(2016, 1, 24);
+        expect(childScope.header(selectedDate)).toEqual('Feb 2016');
+      });
+
+      it('should expose custom-class which calls parent if invoked', function(){
+        var someDate = new Date(2016, 1, 24);
+        $rootScope.date = someDate;
+        $rootScope.getHeaderText = jasmine.createSpy();
+
+        var element = $compile('<su-datepicker-default date="date" header="getHeaderText(date)"></su-datepicker-default>')($rootScope);
+        $rootScope.$digest();
+
+        var childElement = angular.element(element.children()[0]);
+        var childScope = childElement.scope();
+
+        var selectedDate = new Date();
+        childScope.header(selectedDate);
+        var lastCallIndex = $rootScope.getHeaderText.calls.count() - 1;
+        var callbackArgs = $rootScope.getHeaderText.calls.argsFor(lastCallIndex)[0];
+        expect(angular.isDate(callbackArgs)).toBe(true);
+        expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+        expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+        expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
+      });
+    });
 });
