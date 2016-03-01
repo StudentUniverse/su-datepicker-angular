@@ -1,5 +1,5 @@
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 	.su-datepicker-month-wrap .datepicker-range {
 		width: 580px;
 	}
@@ -55,7 +55,7 @@
 	right: 10px;
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 	.su-datepicker-range-wrap.su-datepicker-month-wrap .datepicker .row .col-xs-12:nth-of-type(1) {
 		border-right: 1px solid #ccc;
 		padding-left: 21px;
@@ -74,27 +74,27 @@
 	width: 20px;
 }
 
-.su-datepicker-month-wrap .datepicker .back button:hover,
-.su-datepicker-month-wrap .datepicker .forward button:hover {
+.su-datepicker-month-wrap .datepicker .back button:hover:enabled,
+.su-datepicker-month-wrap .datepicker .forward button:hover:enabled {
 	background: #f4ffe4;
 	border-color: #6cb100;
 	color: #6cb100;
 }
 
-.su-datepicker-month-wrap .datepicker button, 
-.su-datepicker-month-wrap .datepicker .btn, 
+.su-datepicker-month-wrap .datepicker button,
+.su-datepicker-month-wrap .datepicker .btn,
 .su-datepicker-month-wrap .datepicker button:focus,
 .su-datepicker-month-wrap .datepicker button:active,
 .su-datepicker-month-wrap .datepicker .btn:focus,
 .su-datepicker-month-wrap .datepicker .btn:active,
 .su-datepicker-month-wrap .datepicker .back button:focus,
 .su-datepicker-month-wrap .datepicker .back button:active,
-.su-datepicker-month-wrap .datepicker .forward button:focus, 
+.su-datepicker-month-wrap .datepicker .forward button:focus,
 .su-datepicker-month-wrap .datepicker .forward button:active {
 	outline: 0 !important;
 }
 
-.su-datepicker-month-wrap .datepicker .btn:active, 
+.su-datepicker-month-wrap .datepicker .btn:active,
 .su-datepicker-month-wrap .datepicker .btn.active {
 	box-shadow: none;
 }
@@ -116,8 +116,8 @@
 	color: #999;
 }
 
-.su-datepicker-month-wrap .datepicker .btn-default:hover, 
-.su-datepicker-month-wrap .datepicker .btn-default:active, 
+.su-datepicker-month-wrap .datepicker .btn-default:hover,
+.su-datepicker-month-wrap .datepicker .btn-default:active,
 .su-datepicker-month-wrap .datepicker .open .dropdown-toggle.btn-default,
 .su-datepicker-month-wrap .datepicker .in-potential-date-range button {
     background: rgba(108,177,0,0.2) !important;
@@ -133,14 +133,8 @@
     color: #fff;
 }
 
-.su-datepicker-month-wrap .datepicker .active-date button, 
+.su-datepicker-month-wrap .datepicker .active-date button,
 .su-datepicker-month-wrap .datepicker .potential-date button{
     background: #fff !important;
     color: #0072bc;
 }
-
-
-
-
-
-
