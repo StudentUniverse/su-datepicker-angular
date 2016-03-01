@@ -3,6 +3,7 @@
       <div class="col-xs-12 col-sm-6">
           <div class="col-xs-4 back">
             <button class="previous"
+              tabindex="-1"
               ng-click="moveMonth(-1)"
               ng-disabled="previousMonthDisabled({currentDate: currentDateOne})">&laquo;</button>
           </div>
@@ -25,6 +26,7 @@
           </div>
           <div class="col-xs-4 forward text-right">
             <button class="next"
+              tabindex="-1"
               ng-click="moveMonth(1)"
               ng-disabled="nextMonthDisabled({currentDate: currentDateTwo})">&raquo;</button>
           </div>

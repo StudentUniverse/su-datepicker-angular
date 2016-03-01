@@ -15,6 +15,7 @@
       <tr ng-repeat="week in weeks track by $index">
         <td ng-repeat="day in week track by $index" ng-class="customClass({date: day})" class="text-center">
           <button class="btn btn-default btn-sm"
+              tabindex="-1"
               ng-if="day"
               style="width: 100%;"
               ng-click="clickCallback({date: day})"
