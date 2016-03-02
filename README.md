@@ -18,7 +18,7 @@ Make sure that the javascript is referenced in the page typically
 
 Declare su-datepicker-angular as angular module dependency
 
-    angular.module('myApp', ['su-datepicker-angular'])
+    angular.module('myApp', ['su.datepicker'])
 
 ## Building
 Bower is used as the build system so you need to have it installed globally. `npm install -g grunt-cli` should do it.
