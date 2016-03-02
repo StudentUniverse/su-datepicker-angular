@@ -1,5 +1,5 @@
 /**
-* @license StudentUniverse su-datepicker 0.0.1
+* @license StudentUniverse su-datepicker 0.0.2
 * (c) 2016 StudentUniverse https://www.studentuniverse.com
 * License: ISC
 **/
