@@ -3,4 +3,4 @@ angular.module('app', ['su.datepicker'])
   .controller('popupDatepickerExampleCtrl', popupDatepickerExampleCtrl)
   .controller('rangeDatepickerExampleCtrl', rangeDatepickerExampleCtrl)
   .controller('rawMonthExampleCtrl', rawMonthExampleCtrl)
-  .directive('suClickTrap', suClickTrapDirective);
+  .directive('suExternalCheapClick', suExternalCheapClickDirective);
