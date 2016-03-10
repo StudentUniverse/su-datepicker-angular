@@ -21,7 +21,7 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         thrownException = exception;
       }
 
-      expect(thrownException).toEqual('su.datepicker.directives.suDatepickerDefault: name attribute is required');
+      expect(thrownException).toEqual('su.datepicker.directives.suDatepickerDefault: date attribute is required');
     });
 
     it('should be able to use custom template', inject(function($templateCache){

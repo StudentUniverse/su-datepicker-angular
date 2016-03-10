@@ -27,7 +27,7 @@ function suDatepickerDefaultDirective($filter) {
     },
     link: function(scope, element, attrs) {
       if(!attrs.hasOwnProperty('date')){
-        throw 'su.datepicker.directives.suDatepickerDefault: name attribute is required';
+        throw 'su.datepicker.directives.suDatepickerDefault: date attribute is required';
       }
       var today = new Date(),
         potentialDate;
