@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width"/>
+  <title>SU datepicker demo</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../../dist/su-datepicker.css"/>
+
+  <script src="../../lib/angular/1.2.29/angular/angular.js"></script>
+  <script src="../resourceLoadHelper.js"></script>
+
+  <script src="rangeDatepickerExampleCtrl.js"></script>
+  <script>
+    angular.module('app', ['su.datepicker'])
+      .controller('rangeDatepickerExampleCtrl', rangeDatepickerExampleCtrl)
+  </script>
+</head>
+
+<body ng-app="app" ng-controller="rangeDatepickerExampleCtrl">
+  <form class="form-inline">
+    <div class="form-group">
+      <label>start:</label>
+      <input type="text" class="form-control" ng-model="start" readonly="true" su-datepicker-date-parser/>
+    </div>
+    <div class="form-group">
+      <label>end:</label>
+      <input type="text" class="form-control" ng-model="end" readonly="true" su-datepicker-date-parser/>
+    </div>
+  </form>
+  <div>
+    <su-datepicker-range-default start-date="start"
+      is-date-disabled="isDateDisabled(date)"
+      on-date-select="onDateSelect(date)"
+      cheap-mouseenter-callback="setPotentialDate(date)"
+      custom-class="getDateClass(date)"
+      next-month-disabled="disableNextMonth(currentDate)"
+      previous-month-disabled="disablePreviousMonth(currentDate)"></su-datepicker-range-default>
+  </div>
+</body>
+
+</html>

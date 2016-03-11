@@ -11,6 +11,7 @@ function suDatepickerCheapEventDirective($parse) {
       var events = attrs[attrs.$normalize(dirAttr)].split(',');
       var callbacks = {};
       events.forEach(function(event) {
+        event = event.trim();
         var eventExpressionAttr = dirAttr + '-' + event;
         callbacks[event] = $parse(attrs[attrs.$normalize(eventExpressionAttr)]);
       });

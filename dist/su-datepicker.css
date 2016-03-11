@@ -5,12 +5,20 @@
 **/
 
 @media (min-width: 768px) {
-	.su-datepicker-month-wrap .datepicker-range {
+	.su-datepicker-range {
 		width: 580px;
 	}
 }
 
-.su-datepicker-month-wrap .datepicker {
+.su-datepicker-active-date {
+	background-color: #6cb100;
+}
+
+.su-datepicker-day:hover {
+	background-color: rgba(108,177,0,0.2);
+}
+
+.su-datepicker {
 	background: #fff;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 	font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
@@ -19,12 +27,11 @@
 	position: relative;
 }
 
-.su-datepicker-month-wrap.popup-datepicker {
-	border: 0;
-    padding: 0;
+.su-datepicker-default {
+	width: 252px;
 }
 
-.su-datepicker-month-wrap .datepicker .back {
+.su-datepicker-change-button-previous {
 	left: -35px;
 	padding: 0;
 	position: absolute;
@@ -33,21 +40,17 @@
 	width: 0;
 }
 
-.su-datepicker-range-wrap.su-datepicker-month-wrap .datepicker .back {
+.su-datepicker-range .su-datepicker-month-previous .back {
 	left: -30px;
 }
 
-.su-datepicker-month-wrap .datepicker .month {
+.su-datepicker-header {
 	color: #6cb100;
 	padding-bottom: 5px;
 	width: 100%;
 }
 
-.su-datepicker-month-wrap .datepicker .month.col-xs-offset-4 {
-	margin-left: 0;
-}
-
-.su-datepicker-month-wrap .datepicker .forward {
+.su-datepicker-change-button-next {
 	padding: 0;
 	position: absolute;
 	right: 5px;
@@ -56,19 +59,19 @@
 	width: 0;
 }
 
-.su-datepicker-range-wrap.su-datepicker-month-wrap .datepicker .forward {
+.su-datepicker-range .su-datepicker-month-next {
 	right: 10px;
 }
 
-@media (min-width: 768px) {
-	.su-datepicker-range-wrap.su-datepicker-month-wrap .datepicker .row .col-xs-12:nth-of-type(1) {
+/*@media (min-width: 768px) {
+	.su-datepicker-range-wrap.su-datepicker-month-wrap .su-datepicker .row .col-xs-12:nth-of-type(1) {
 		border-right: 1px solid #ccc;
 		padding-left: 21px;
 	}
-}
+}*/
 
-.su-datepicker-month-wrap .datepicker .back button,
-.su-datepicker-month-wrap .datepicker .forward button {
+.su-datepicker-month-wrap .su-datepicker .back button,
+.su-datepicker-month-wrap .su-datepicker .forward button {
 	background: #fff;
 	border: 1px solid #d3e8b3;
 	border-radius: 50%;
@@ -79,67 +82,71 @@
 	width: 20px;
 }
 
-.su-datepicker-month-wrap .datepicker .back button:hover:enabled,
-.su-datepicker-month-wrap .datepicker .forward button:hover:enabled {
+.su-datepicker-month-wrap .su-datepicker .back button:hover:enabled,
+.su-datepicker-month-wrap .su-datepicker .forward button:hover:enabled {
 	background: #f4ffe4;
 	border-color: #6cb100;
 	color: #6cb100;
 }
 
-.su-datepicker-month-wrap .datepicker button,
-.su-datepicker-month-wrap .datepicker .btn,
-.su-datepicker-month-wrap .datepicker button:focus,
-.su-datepicker-month-wrap .datepicker button:active,
-.su-datepicker-month-wrap .datepicker .btn:focus,
-.su-datepicker-month-wrap .datepicker .btn:active,
-.su-datepicker-month-wrap .datepicker .back button:focus,
-.su-datepicker-month-wrap .datepicker .back button:active,
-.su-datepicker-month-wrap .datepicker .forward button:focus,
-.su-datepicker-month-wrap .datepicker .forward button:active {
+.su-datepicker-month-wrap .su-datepicker button,
+.su-datepicker-month-wrap .su-datepicker .btn,
+.su-datepicker-month-wrap .su-datepicker button:focus,
+.su-datepicker-month-wrap .su-datepicker button:active,
+.su-datepicker-month-wrap .su-datepicker .btn:focus,
+.su-datepicker-month-wrap .su-datepicker .btn:active,
+.su-datepicker-month-wrap .su-datepicker .back button:focus,
+.su-datepicker-month-wrap .su-datepicker .back button:active,
+.su-datepicker-month-wrap .su-datepicker .forward button:focus,
+.su-datepicker-month-wrap .su-datepicker .forward button:active {
 	outline: 0 !important;
 }
 
-.su-datepicker-month-wrap .datepicker .btn:active,
-.su-datepicker-month-wrap .datepicker .btn.active {
+.su-datepicker-day {
+
+}
+
+.su-datepicker-month-wrap .su-datepicker .btn:active,
+.su-datepicker-month-wrap .su-datepicker .btn.active {
 	box-shadow: none;
 }
 
-.su-datepicker-month-wrap .datepicker table th {
+.su-datepicker-month-wrap .su-datepicker table th {
 	color: #6cb100;
 	font-size: 75%;
 }
 
-.su-datepicker-month-wrap .datepicker table td button {
+.su-datepicker-month-wrap .su-datepicker table td button {
 	border-color: #fff;
 	border-radius: 0;
 	font-size: 13px;
     transition: all 0.2s ease-in-out;
 }
 
-.su-datepicker-month-wrap .datepicker table td button[disabled] {
+.su-datepicker-month-wrap .su-datepicker table td button[disabled] {
 	background: #fff;
 	color: #999;
 }
 
-.su-datepicker-month-wrap .datepicker .btn-default:hover,
-.su-datepicker-month-wrap .datepicker .btn-default:active,
-.su-datepicker-month-wrap .datepicker .open .dropdown-toggle.btn-default,
-.su-datepicker-month-wrap .datepicker .in-potential-date-range button {
+.su-datepicker-month-wrap .su-datepicker .btn-default:hover,
+.su-datepicker-month-wrap .su-datepicker .btn-default:active,
+.su-datepicker-month-wrap .su-datepicker .open .dropdown-toggle.btn-default,
+.su-datepicker-month-wrap .su-datepicker .in-potential-date-range button {
     background: rgba(108,177,0,0.2) !important;
 }
 
-.su-datepicker-month-wrap .datepicker .btn-default:hover {
+.su-datepicker-month-wrap .su-datepicker .btn-default:hover {
 	color: #6cb100;
 }
 
-.su-datepicker-month-wrap .datepicker .btn-default:focus,
-.su-datepicker-month-wrap .datepicker .in-selected-date-range button {
+.su-datepicker-month-wrap .su-datepicker .btn-default:focus,
+.su-datepicker-month-wrap .su-datepicker .in-selected-date-range button {
 	background: #6cb100 !important;
     color: #fff;
 }
 
-.su-datepicker-month-wrap .datepicker .active-date button,
-.su-datepicker-month-wrap .datepicker .potential-date button{
+.su-datepicker-month-wrap .su-datepicker .active-date button,
+.su-datepicker-month-wrap .su-datepicker .potential-date button{
     background: #fff !important;
     color: #0072bc;
 }

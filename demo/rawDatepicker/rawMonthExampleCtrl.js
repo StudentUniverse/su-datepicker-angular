@@ -1,6 +1,5 @@
 function rawMonthExampleCtrl($scope) {
-  var today = new Date(),
-    potentialDate;
+  var today = new Date();
   today.setHours(0, 0, 0, 0);
   $scope.date = new Date();
 
@@ -21,29 +20,17 @@ function rawMonthExampleCtrl($scope) {
     $scope.date = date;
   };
 
-  //add active-date class if the date matches the selected date
-  // or potential-date if the date matches the potential date
   $scope.getDateClass = function(date) {
+    var classes = [];
     if (date) {
+      classes.push('btn btn-default btn-sm');
       if ($scope.date.getFullYear() === date.getFullYear() &&
         $scope.date.getMonth() === date.getMonth() &&
         $scope.date.getDate() === date.getDate()) {
-        return 'active-date';
-      } else if (potentialDate) {
-        if (potentialDate.getFullYear() === date.getFullYear() &&
-          potentialDate.getMonth() === date.getMonth() &&
-          potentialDate.getDate() === date.getDate()) {
-          return 'potential-date';
-        }
+        classes.push('active');
       }
     }
-  };
-
-  $scope.cheapHover = function(date) {
-    if (date) {
-      potentialDate = date;
-      $scope.$digest(); //needs to be triggered manually
-    }
+    return classes.join(' ');
   };
 
   function addMonth(date, diff) {

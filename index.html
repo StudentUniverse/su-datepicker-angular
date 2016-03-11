@@ -7,44 +7,6 @@
   <title>SU datepicker demo</title>
   <link rel="shortcut icon" href="demo/favicon.ico">
   <link rel="stylesheet" href="lib/bootstrap/3.1.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="demo/styles.css"/>
-  <link rel="stylesheet" href="dist/su-datepicker.css"/>
-
-  <script src="lib/angular/1.2.29/angular/angular.js"></script>
-  <script>
-    // when in development use the build resources
-    // in prod point to dist
-    var jsPath;
-    var env = 'PROD'; //'DEV'
-
-    if(location.protocol === 'file:' ||
-        location.hostname === 'localhost' ||
-        location.hostname === '127.0.0.1'){
-          env = 'DEV';
-        }
-
-    if(env === 'PROD'){
-      jsPath = 'dist/su-datepicker.js';
-    } else {
-      jsPath = 'build/su-datepicker.js';
-    }
-
-    appendScript(jsPath);
-
-    function appendScript(pathToScript) {
-        var js = document.createElement("script");
-        js.type = "text/javascript";
-        js.src = pathToScript;
-        document.write(js.outerHTML);
-    }
-  </script>
-
-  <script src="demo/controllers/defaultDatepickerExampleCtrl.js"></script>
-  <script src="demo/controllers/popupDatepickerExampleCtrl.js"></script>
-  <script src="demo/controllers/rangeDatepickerExampleCtrl.js"></script>
-  <script src="demo/controllers/rawMonthExampleCtrl.js"></script>
-  <script src="demo/directives/suExternalCheapClickDirective.js"></script>
-  <script src="demo/app.js"></script>
 </head>
 
 <body ng-app="app">
@@ -52,7 +14,7 @@
     <div class="row">
       <div class="col-xs-12">
         <h1>StudentUniverse angular date range picker</h1>
-        <section ng-controller="rawMonthExampleCtrl">
+        <section class="rawMonthExample">
           <h3>Raw month picker picker(su-datepicker-month-default)</h3>
           <ul>
             <li><code>date</code> is required and is used to track which month is displayed.</li>
@@ -61,35 +23,11 @@
             <li><code>customClass</code> callback will be called to set custom styles.</li>
             <li><code>cheapMousernterCallback</code> will be called when a date is hovered. Callback must trigger <code>$digest</code> manually for performance reasons.</li>
           </ul>
-          <form>
-            <div class="form-inline">
-              <input type="text" class="form-control" ng-model="date" readonly="true" su-datepicker-date-parser/>
-            </div>
-          </form>
-          <div class="datepicker datepicker-default">
-            <div class="col-xs-4">
-              <button ng-click="previousMonth()">&laquo;</button>
-            </div>
-            <div class="col-xs-4 text-center">
-              <strong ng-bind="date.getMonth() | suDatepickerMonthText"></strong>
-            </div>
-            <div class="col-xs-4 text-right">
-              <button ng-click="nextMonth()">&raquo;</button>
-            </div>
-            <div>
-              <su-datepicker-month-default
-                date="date"
-                click-callback="dateClicked(date)"
-                date-disabled="isDisabled(date)"
-                custom-class="getDateClass(date)"
-                cheap-mouseenter-callback="cheapHover(date)">
-              </su-datepicker-month-default>
-            </div>
-          </div>
+          <iframe src="demo/rawDatepicker/index.html" frameBorder="0" width="300" height="300"></iframe>
           <p>If you need further customizations you can use su-datepicker-month directive.</p>
         </section>
         <hr/>
-        <section ng-controller="defaultDatepickerExampleCtrl">
+        <section>
           <h3>Default datepicker encompasses the raw month picker logic(su-datepicker-default)</h3>
           <ul>
             <li>The date will not change by changing month.</li>
@@ -101,18 +39,11 @@
             <li>Custom date class logic can be used by supplying <code>custom-class</code> callback.</li>
             <li>Custom header text can be set by supplying <code>header</code> callback.</li>
           </ul>
-          <form>
-            <div class="form-inline">
-              <input type="text" class="form-control" ng-model="date" readonly="true" su-datepicker-date-parser/>
-            </div>
-          </form>
-          <div class="su-datepicker-month-wrap">
-            <su-datepicker-default date="date" disable-past></su-datepicker-default>
-          </div>
+          <iframe src="demo/defaultDatepicker/index.html" frameBorder="0" width="400" height="300"></iframe>
           <p>Custom template can be used by adding template-url attribute.</p>
         </section>
         <hr/>
-        <section ng-controller="rangeDatepickerExampleCtrl">
+        <section>
           <h3>Default date range picker encompasses the raw month picker logic(su-datepicker-range-default)</h3>
           <ul>
             <li>The date will not change by changing month.</li>
@@ -124,28 +55,10 @@
             <li>Custom date class logic can be used by supplying <code>custom-class</code> callback.</li>
             <li>Custom header text can be set by supplying <code>header</code> callback.</li>
           </ul>
-          <form class="form-inline">
-            <div class="form-group">
-              <label>start:</label>
-              <input type="text" class="form-control" ng-model="start" readonly="true" su-datepicker-date-parser/>
-            </div>
-            <div class="form-group">
-              <label>end:</label>
-              <input type="text" class="form-control" ng-model="end" readonly="true" su-datepicker-date-parser/>
-            </div>
-          </form>
-          <div class="su-datepicker-month-wrap su-datepicker-range-wrap">
-            <su-datepicker-range-default start-date="start"
-              is-date-disabled="isDateDisabled(date)"
-              on-date-select="onDateSelect(date)"
-              cheap-mouseenter-callback="setPotentialDate(date)"
-              custom-class="getDateClass(date)"
-              next-month-disabled="disableNextMonth(currentDate)"
-              previous-month-disabled="disablePreviousMonth(currentDate)"></su-datepicker-range-default>
-          </div>
+          <iframe src="demo/rangeDatepicker/index.html" frameBorder="0" width="800" height="800"></iframe>
         </section>
         <hr/>
-        <section ng-controller="popupDatepickerExampleCtrl">
+        <section>
           <h3>Example popup datepicker</h3>
           <p>Logic for opening and closing a datepicker popup is business specific.
             It's fairly easy to wrap a datepicker in a popup as the following example shows.
@@ -153,31 +66,8 @@
             If either the destination or submit get focus, or there's a click otside the datepicker
             the popup will close.
           </p>
-          <form class="form-inline">
-            <div class="form-group">
-              <input type="text"
-                class="form-control"
-                placeholder="destination"
-                ng-model="destination"
-                ng-focus="hideDatepicker()"/>
-            </div>
-            <div class="form-group" su-external-cheap-click="hideDatepicker(true)">
-                <input type="text"
-                  class="form-control"
-                  placeholder="select date"
-                  ng-model="date"
-                  readonly="true"
-                  su-datepicker-date-parser
-                  ng-focus="showDatepicker()"/>
-                <div class="popup-datepicker su-datepicker-month-wrap" ng-show="shown">
-                  <su-datepicker-default date="date"
-                    select-date="dateSelectCallback(date)"
-                    disable-past>
-                  </su-datepicker-default>
-                </div>
-            </div>
-            <button class="btn btn-default btn-sm" ng-focus="hideDatepicker()" ng-click="submit()">Submit</button>
-          </form>
+          <p>Note: because the code is running in an iframe only clicks within the frame will close the popup</p>
+          <iframe src="demo/popupDatepicker/index.html" frameBorder="0" width="600" height="300"></iframe>
         </section>
       </div>
     </div>

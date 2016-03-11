@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width"/>
+  <title>SU datepicker demo</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../../dist/su-datepicker.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <script src="../../lib/angular/1.2.29/angular/angular.js"></script>
+  <script src="../resourceLoadHelper.js"></script>
+
+  <script src="popupDatepickerExampleCtrl.js"></script>
+  <script src="suExternalCheapClickDirective.js"></script>
+  <script>
+    angular.module('app', ['su.datepicker'])
+      .controller('popupDatepickerExampleCtrl', popupDatepickerExampleCtrl)
+      .directive('suExternalCheapClick', suExternalCheapClickDirective)
+  </script>
+</head>
+
+<body ng-app="app" ng-controller="popupDatepickerExampleCtrl">
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="text"
+        class="form-control"
+        placeholder="destination"
+        ng-model="destination"
+        ng-focus="hideDatepicker()"/>
+    </div>
+    <div class="form-group" su-external-cheap-click="hideDatepicker(true)">
+        <input type="text"
+          class="form-control"
+          placeholder="select date"
+          ng-model="date"
+          readonly="true"
+          su-datepicker-date-parser
+          ng-focus="showDatepicker()"/>
+        <div class="popup-datepicker" ng-show="shown">
+          <su-datepicker-default date="date"
+            select-date="dateSelectCallback(date)"
+            disable-past>
+          </su-datepicker-default>
+        </div>
+    </div>
+    <button class="btn btn-default btn-sm" ng-focus="hideDatepicker()" ng-click="submit()">Submit</button>
+  </form>
+</body>
+</html>

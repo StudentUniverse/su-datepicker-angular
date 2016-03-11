@@ -1,0 +1,12 @@
+<button class="su-datepicker-day"
+    tabindex="-1"
+    ng-if="day"
+    style="width: 100%;"
+    ng-click="clickCallback({date: day})"
+    ng-class="customClass({date: day})"
+    su-datepicker-cheap-event="mouseenter,mouseout"
+    su-datepicker-cheap-event-mouseenter="cheapMouseenterCallback({date: day})"
+    su-datepicker-cheap-event-mouseout="cheapMouseoutCallback({date: day})"
+    ng-disabled="dateDisabled({date: day})"
+    ng-bind="day.getDate()">
+</button>

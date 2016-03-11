@@ -1,0 +1,11 @@
+.popup-datepicker {
+    border: 1px solid rgba(0,0,0,0.15);
+    box-sizing: content-box;
+    padding: 5px;
+   	position: absolute;
+}
+
+.popup-datepicker {
+	border: 0;
+    padding: 0;
+}

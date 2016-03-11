@@ -170,6 +170,28 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
         });
       });
 
+      describe('cheapMouseoutCallback', function(){
+        it('should expose cheapMouseoutCallback which calls parent if invoked', function(){
+          var someDate = new Date(2016, 1, 24);
+          $rootScope.date = someDate;
+          $rootScope.mouseOut = jasmine.createSpy();
+
+          var element = $compile('<su-datepicker-range-default start-date="date" cheap-mouseout-callback="mouseOut(date)"></su-datepicker-range-default>')($rootScope);
+          $rootScope.$digest();
+
+          var childElement = angular.element(element.children()[0]);
+          var childScope = childElement.scope();
+
+          var selectedDate = new Date();
+          childScope.cheapMouseoutCallback({date: selectedDate});
+          var callbackArgs = $rootScope.mouseOut.calls.argsFor(0)[0];
+          expect(angular.isDate(callbackArgs)).toBe(true);
+          expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+          expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+          expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
+        });
+      });
+
       describe('customClass', function(){
 
         it('should expose custom-class which calls parent if invoked', function(){

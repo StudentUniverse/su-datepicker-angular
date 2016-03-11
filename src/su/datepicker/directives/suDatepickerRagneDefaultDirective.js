@@ -19,6 +19,7 @@ function suDatepickerRangeDefaultDirective($filter){
       isDateDisabled: '&',
       onDateSelect: '&',
       cheapMouseenterCallback: '&',
+      cheapMouseoutCallback: '&',
       customClass: '&',
       previousMonthDisabled: '&',
       nextMonthDisabled: '&',

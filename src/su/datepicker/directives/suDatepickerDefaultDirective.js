@@ -20,6 +20,7 @@ function suDatepickerDefaultDirective($filter) {
       isDateDisabled: '&',
       selectDate: '&',
       cheapMouseenterCallback: '&',
+      cheapMouseoutCallback: '&',
       customClass: '&',
       previousMonthDisabled: '&',
       nextMonthDisabled: '&',
@@ -29,8 +30,7 @@ function suDatepickerDefaultDirective($filter) {
       if(!attrs.hasOwnProperty('date')){
         throw 'su.datepicker.directives.suDatepickerDefault: date attribute is required';
       }
-      var today = new Date(),
-        potentialDate;
+      var today = new Date();
 
       // need a seperate date reference for things like changing the month
       scope.currentDate = util.copyDateOnly(scope.date || new Date());
@@ -72,25 +72,8 @@ function suDatepickerDefaultDirective($filter) {
             if (scope.date.getFullYear() === date.getFullYear() &&
             scope.date.getMonth() === date.getMonth() &&
             scope.date.getDate() === date.getDate()) {
-              return 'active-date';
-            } else if (potentialDate) {
-              if (potentialDate.getFullYear() === date.getFullYear() &&
-              potentialDate.getMonth() === date.getMonth() &&
-              potentialDate.getDate() === date.getDate()) {
-                return 'potential-date';
-              }
+              return 'su-datepicker-active-date';
             }
-          }
-        }
-      };
-
-      scope.setPotentialDate = function(date) {
-        if(attrs.hasOwnProperty('cheapMouseenterCallback')){
-          return scope.cheapMouseenterCallback({date: date});
-        } else {
-          if (angular.isDate(date)) {
-            potentialDate = date;
-            scope.$digest();
           }
         }
       };

@@ -186,32 +186,7 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
       });
     });
 
-    describe('setPotentialDate', function(){
-      it('should be available to child scope', function(){
-        $rootScope.date = new Date();
-        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        expect(typeof childScope.setPotentialDate).toEqual('function');
-      });
-
-      it('should trigger scope $digest', function(){
-        $rootScope.date = new Date();
-        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        scopeSpy = spyOn(childScope, '$digest');
-        childScope.setPotentialDate(new Date());
-        expect(scopeSpy).toHaveBeenCalled();
-      });
-
-      it('cheap-mouseenter-callback attribute should override setpotentialDate', function(){
+    it('cheap-mouseenter-callback', function(){
         var someDate = new Date(2016, 1, 24);
         $rootScope.date = someDate;
         $rootScope.mouseEnter = jasmine.createSpy();
@@ -223,13 +198,32 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         var childScope = childElement.scope();
 
         var selectedDate = new Date();
-        childScope.setPotentialDate(selectedDate);
+        childScope.cheapMouseenterCallback({date: selectedDate});
         var callbackArgs = $rootScope.mouseEnter.calls.argsFor(0)[0];
         expect(angular.isDate(callbackArgs)).toBe(true);
         expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
         expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
         expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
-      });
+    });
+
+    it('cheap-mouseout-callback', function(){
+      var someDate = new Date(2016, 1, 24);
+      $rootScope.date = someDate;
+      $rootScope.mouseout = jasmine.createSpy();
+
+      var element = $compile('<su-datepicker-default date="date" cheap-mouseout-callback="mouseout(date)"></su-datepicker-default>')($rootScope);
+      $rootScope.$digest();
+
+      var childElement = angular.element(element.children()[0]);
+      var childScope = childElement.scope();
+
+      var selectedDate = new Date();
+      childScope.cheapMouseoutCallback({date: selectedDate});
+      var callbackArgs = $rootScope.mouseout.calls.argsFor(0)[0];
+      expect(angular.isDate(callbackArgs)).toBe(true);
+      expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
+      expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
+      expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
     });
 
     describe('getDateClass', function(){
@@ -255,7 +249,7 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         expect(childScope.getDateClass(new Date())).toBeUndefined();
       });
 
-      it('should return "active-date" if the passed in date matches the scope date', function(){
+      it('should return "su-datepicker-active-date" if the passed in date matches the scope date', function(){
         $rootScope.date = new Date();
         var dateCopy = new Date($rootScope.date.getFullYear(), $rootScope.date.getMonth(), $rootScope.date.getDate());
         var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
@@ -264,20 +258,7 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         var childElement = angular.element(element.children()[0]);
         var childScope = childElement.scope();
 
-        expect(childScope.getDateClass(dateCopy)).toEqual('active-date');
-      });
-
-      it('should return "potential-date" if the passed in date does not match scope date but matches potential date', function(){
-        $rootScope.date = new Date();
-        var dateCopy = new Date($rootScope.date.getFullYear(), $rootScope.date.getMonth(), $rootScope.date.getDate() + 1);
-        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        childScope.setPotentialDate(dateCopy);
-        expect(childScope.getDateClass(dateCopy)).toEqual('potential-date');
+        expect(childScope.getDateClass(dateCopy)).toEqual('su-datepicker-active-date');
       });
 
       it('custom-class attribute should override getDateClass', function(){
