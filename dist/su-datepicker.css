@@ -10,12 +10,16 @@
 	}
 }
 
+.su-datepicker-day:hover {
+	background-color: rgba(108,177,0,0.2);
+}
+
 .su-datepicker-active-date {
 	background-color: #6cb100;
 }
 
-.su-datepicker-day:hover {
-	background-color: rgba(108,177,0,0.2);
+.su-datepicker-active-date:hover {
+	background-color: #6cb100;
 }
 
 .su-datepicker {
