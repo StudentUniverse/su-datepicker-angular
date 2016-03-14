@@ -183,12 +183,8 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
           var childScope = childElement.scope();
 
           var selectedDate = new Date();
-          childScope.cheapMouseoutCallback({date: selectedDate});
-          var callbackArgs = $rootScope.mouseOut.calls.argsFor(0)[0];
-          expect(angular.isDate(callbackArgs)).toBe(true);
-          expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
-          expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
-          expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
+          childScope.cheapMouseoutCallback();
+          expect($rootScope.mouseOut).toHaveBeenCalled();
         });
       });
 

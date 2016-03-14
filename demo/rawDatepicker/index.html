@@ -41,7 +41,8 @@
         date="date"
         click-callback="dateClicked(date)"
         date-disabled="isDisabled(date)"
-        custom-class="getDateClass(date)">
+        custom-class="getDateClass(date)"
+        cheap-mouseout-callback="clearPotentialDate(date)">
       </su-datepicker-month-default>
     </div>
   </div>

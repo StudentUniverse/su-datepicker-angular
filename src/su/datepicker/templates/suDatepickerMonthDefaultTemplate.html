@@ -11,7 +11,7 @@
         <th class="text-center">Sat</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody su-datepicker-cheap-event="mouseleave" su-datepicker-cheap-event-mouseleave="cheapMouseoutCallback({date: day})">
       <tr ng-repeat="week in weeks track by $index" class="su-datepicker-week-row">
         <td ng-repeat="day in week track by $index" class="su-datepicker-day-of-week">
           <su-datepicker-day></su-datepicker-day>
