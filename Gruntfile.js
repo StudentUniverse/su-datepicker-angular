@@ -15,9 +15,17 @@ module.exports = function(grunt) {
     },
     copy: {
       dist: {
-        src: 'build/su-datepicker.js',
-        dest: 'dist/su-datepicker.js'
-      },
+        files: [
+          {
+            src: 'build/su-datepicker.js',
+            dest: 'dist/su-datepicker.js'
+          },
+          {
+            src: 'src/styles/su-datepicker.css',
+            dest: 'dist/su-datepicker.css'
+          }
+        ]
+      }
     },
     cssmin: {
       dist: {
