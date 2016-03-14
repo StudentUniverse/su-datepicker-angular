@@ -22,7 +22,7 @@
 </head>
 
 <body ng-app="app" ng-controller="popupDatepickerExampleCtrl">
-  <form class="form-inline">
+  <form class="form-inline" ng-submit="submit()">
     <div class="form-group">
       <input type="text"
         class="form-control"
@@ -41,11 +41,12 @@
         <div class="popup-datepicker" ng-show="shown">
           <su-datepicker-default date="date"
             select-date="dateSelectCallback(date)"
-            disable-past>
+            disable-past
+            custom-class="customClass(date)">
           </su-datepicker-default>
         </div>
     </div>
-    <button class="btn btn-default btn-sm" ng-focus="hideDatepicker()" ng-click="submit()">Submit</button>
+    <input type="submit" value="Submit" ng-focus="hideDatepicker()"/>
   </form>
 </body>
 </html>

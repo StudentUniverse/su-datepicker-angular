@@ -1,12 +1,10 @@
 <div class="su-datepicker su-datepicker-range">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-          <div class="su-datepicker-change-button previous">
-            <button
-              tabindex="-1"
-              ng-click="moveMonth(-1)"
-              ng-disabled="previousMonthDisabled({currentDate: currentDateOne})">&laquo;</button>
-          </div>
+        <su-datepicker-change-button type="previous"
+          click-callback="moveMonth(-1)"
+          is-disabled="previousMonthDisabled({currentDate: currentDateOne})">
+          </su-datepicker-change-button>
           <su-datepicker-header header="{{header(currentDateOne)}}"></su-datepicker-header>
           <div>
             <su-datepicker-month-default
@@ -21,12 +19,10 @@
       </div>
       <div class="col-xs-12 col-sm-6">
           <su-datepicker-header header="{{header(currentDateTwo)}}"></su-datepicker-header>
-          <div class="su-datepicker-change-button next">
-            <button
-              tabindex="-1"
-              ng-click="moveMonth(1)"
-              ng-disabled="nextMonthDisabled({currentDate: currentDateTwo})">&raquo;</button>
-          </div>
+          <su-datepicker-change-button type="next"
+            click-callback="moveMonth(1)"
+            is-disabled="nextMonthDisabled({currentDate: currentDateTwo})">
+          </su-datepicker-change-button>
           <div>
             <su-datepicker-month-default
               date="currentDateTwo"
