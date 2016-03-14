@@ -20,16 +20,14 @@
 </head>
 
 <body ng-app="app" ng-controller="rangeDatepickerExampleCtrl">
-  <form class="form-inline">
-    <div class="form-group">
-      <label>start:</label>
-      <input type="text" class="form-control" ng-model="start" readonly="true" su-datepicker-date-parser/>
-    </div>
-    <div class="form-group">
-      <label>end:</label>
-      <input type="text" class="form-control" ng-model="end" readonly="true" su-datepicker-date-parser/>
-    </div>
-  </form>
+  <div>
+    <label style="font-family: sans-serif; font-size: 14px;">Start:</label>
+    <input type="text" class="su-input" ng-model="start" readonly="true" su-datepicker-date-parser/>
+  </div>
+  <div>
+    <label style="font-family: sans-serif; font-size: 14px;">End:</label>
+    <input type="text" class="su-input" ng-model="end" readonly="true" su-datepicker-date-parser/>
+  </div>
   <div>
     <su-datepicker-range-default start-date="start"
       is-date-disabled="isDateDisabled(date)"

@@ -1,38 +1,38 @@
 <div class="su-datepicker su-datepicker-range">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <su-datepicker-change-button type="previous"
+  <div>
+    <su-datepicker-change-button type="previous"
           click-callback="moveMonth(-1)"
           is-disabled="previousMonthDisabled({currentDate: currentDateOne})">
-          </su-datepicker-change-button>
-          <su-datepicker-header header="{{header(currentDateOne)}}"></su-datepicker-header>
-          <div>
-            <su-datepicker-month-default
-              date="currentDateOne"
-              click-callback="onDateSelect({date: date})"
-              date-disabled="isDateDisabled(date)"
-              custom-class="customClass({date: date})"
-              cheap-mouseenter-callback="cheapMouseenterCallback({date: date})"
-              cheap-mouseout-callback="cheapMouseoutCallback()">
-            </su-datepicker-month-default>
-          </div>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-          <su-datepicker-header header="{{header(currentDateTwo)}}"></su-datepicker-header>
-          <su-datepicker-change-button type="next"
+      </su-datepicker-change-button>
+    <su-datepicker-header header="{{header(currentDateOne)}}"></su-datepicker-header>
+    <div>
+      <su-datepicker-month-default
+        date="currentDateOne"
+        click-callback="onDateSelect({date: date})"
+        date-disabled="isDateDisabled(date)"
+        custom-class="customClass({date: date})"
+        cheap-mouseenter-callback="cheapMouseenterCallback({date: date})"
+        cheap-mouseout-callback="cheapMouseoutCallback()">
+      </su-datepicker-month-default>
+    </div>
+  </div>
+  <div>
+    <su-datepicker-header header="{{header(currentDateTwo)}}"></su-datepicker-header>
+     <su-datepicker-change-button type="next"
             click-callback="moveMonth(1)"
             is-disabled="nextMonthDisabled({currentDate: currentDateTwo})">
-          </su-datepicker-change-button>
-          <div>
-            <su-datepicker-month-default
-              date="currentDateTwo"
-              click-callback="onDateSelect({date: date})"
-              date-disabled="isDateDisabled(date)"
-              custom-class="customClass({date: date})"
-              cheap-mouseenter-callback="cheapMouseenterCallback({date: date})"
-              cheap-mouseout-callback="cheapMouseoutCallback()">
-            </su-datepicker-month-default>
-          </div>
-        </div>
+      </su-datepicker-change-button>
+      <div>
+        <su-datepicker-month-default
+          date="currentDateTwo"
+          click-callback="onDateSelect({date: date})"
+          date-disabled="isDateDisabled(date)"
+          custom-class="customClass({date: date})"
+          cheap-mouseenter-callback="cheapMouseenterCallback({date: date})"
+          cheap-mouseout-callback="cheapMouseoutCallback()">
+        </su-datepicker-month-default>
+      </div>
     </div>
+  </div>
+  
 </div>

@@ -21,10 +21,11 @@
 
 <body ng-app="app" ng-controller="defaultDatepickerExampleCtrl">
   <form>
-    <div class="form-inline">
-      <input type="text" class="form-control" ng-model="date" readonly="true" su-datepicker-date-parser/>
+    <div>
+      <input type="text" class="su-input" ng-model="date" readonly="true" su-datepicker-date-parser/>
     </div>
   </form>
+
   <div>
     <su-datepicker-default date="date" custom-class="customClass(date)" disable-past></su-datepicker-default>
   </div>
