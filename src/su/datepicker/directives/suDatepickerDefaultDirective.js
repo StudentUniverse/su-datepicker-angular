@@ -30,7 +30,8 @@ function suDatepickerDefaultDirective($filter) {
       if(!attrs.hasOwnProperty('date')){
         throw 'su.datepicker.directives.suDatepickerDefault: date attribute is required';
       }
-      var today = new Date();
+      var today = new Date(),
+        pastDisabled = attrs.hasOwnProperty(attrs.$normalize('disable-past'));
 
       // need a seperate date reference for things like changing the month
       scope.currentDate = util.copyDateOnly(scope.date || new Date());
@@ -42,8 +43,23 @@ function suDatepickerDefaultDirective($filter) {
         };
       } else {
         scope.isDateDisabled = function(date) {
-          if (attrs.hasOwnProperty(attrs.$normalize('disable-past'))) {
+          if (pastDisabled) {
             return suTimeNeutralDateCompareFilter(date, today) === -1;
+          }
+          return false;
+        };
+      }
+
+      if(pastDisabled && !attrs.hasOwnProperty('previousMonthDisabled')){
+        scope.previousMonthDisabled = function(variables) {
+          var currentDate = variables && variables.currentDate;
+          if (angular.isDate(currentDate)) {
+            if (today.getFullYear() > currentDate.getFullYear()) {
+              return true;
+            } else if (today.getFullYear() === currentDate.getFullYear() &&
+              today.getMonth() >= currentDate.getMonth()) {
+              return true;
+            }
           }
           return false;
         };

@@ -92,18 +92,6 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
     return false;
   };
 
-  $scope.disablePreviousMonth = function(currentDate) {
-    if (angular.isDate(currentDate)) {
-      if (today.getFullYear() > currentDate.getFullYear()) {
-        return true;
-      } else if (today.getFullYear() === currentDate.getFullYear() &&
-        today.getMonth() >= currentDate.getMonth()) {
-        return true;
-      }
-    }
-    return false;
-  };
-
   //private
   function copyDateOnly(date) {
     if (angular.isDate(date)) {

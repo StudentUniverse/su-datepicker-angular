@@ -31,7 +31,8 @@ function suDatepickerRangeDefaultDirective($filter){
       }
 
       var today = new Date(),
-        potentialDate;
+        potentialDate,
+        pastDisabled = attrs.hasOwnProperty(attrs.$normalize('disable-past'));
 
       // need a seperate date reference for calendar tracking
       scope.currentDateOne = util.copyDateOnly(scope.startDate || new Date());
@@ -44,7 +45,7 @@ function suDatepickerRangeDefaultDirective($filter){
         };
       } else {
         scope.isDateDisabled = function(date) {
-          if (attrs.hasOwnProperty(attrs.$normalize('disable-past'))) {
+          if (pastDisabled) {
             return suTimeNeutralDateCompareFilter(date, today) === -1;
           }
           return false;
@@ -67,6 +68,21 @@ function suDatepickerRangeDefaultDirective($filter){
             var monthText = suDatepickerMonthTextFilter(date.getMonth());
             return monthText + ' ' + date.getFullYear();
           }
+        };
+      }
+
+      if(pastDisabled && !attrs.hasOwnProperty('previousMonthDisabled')){
+        scope.previousMonthDisabled = function(variables) {
+          var currentDate = variables && variables.currentDate;
+          if (angular.isDate(currentDate)) {
+            if (today.getFullYear() > currentDate.getFullYear()) {
+              return true;
+            } else if (today.getFullYear() === currentDate.getFullYear() &&
+              today.getMonth() >= currentDate.getMonth()) {
+              return true;
+            }
+          }
+          return false;
         };
       }
     }
