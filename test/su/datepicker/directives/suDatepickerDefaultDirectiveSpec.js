@@ -226,42 +226,7 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
       expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
     });
 
-    describe('getDateClass', function(){
-      it('should be available to child scope', function(){
-        $rootScope.date = new Date();
-        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        expect(typeof childScope.getDateClass).toEqual('function');
-      });
-
-      it('should return undefined if date is not set', function(){
-        $rootScope.date = undefined;
-        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        expect(childScope.getDateClass(new Date())).toBeUndefined();
-      });
-
-      it('should return "su-datepicker-active-date" if the passed in date matches the scope date', function(){
-        $rootScope.date = new Date();
-        var dateCopy = new Date($rootScope.date.getFullYear(), $rootScope.date.getMonth(), $rootScope.date.getDate());
-        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        expect(childScope.getDateClass(dateCopy)).toEqual('su-datepicker-active-date');
-      });
-
-      it('custom-class attribute should override getDateClass', function(){
+    it('should expose custom-class which calls parent if invoked', function(){
         var someDate = new Date(2016, 1, 24);
         $rootScope.date = someDate;
         $rootScope.dateClass = jasmine.createSpy();
@@ -273,13 +238,12 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         var childScope = childElement.scope();
 
         var selectedDate = new Date();
-        childScope.getDateClass(selectedDate);
+        childScope.customClass({date: selectedDate});
         var callbackArgs = $rootScope.dateClass.calls.argsFor($rootScope.dateClass.calls.count() - 1)[0];
         expect(angular.isDate(callbackArgs)).toBe(true);
         expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
         expect(callbackArgs.getMonth()).toEqual(selectedDate.getMonth());
         expect(callbackArgs.getDate()).toEqual(selectedDate.getDate());
-      });
     });
 
     describe('previousMonthDisabled', function(){

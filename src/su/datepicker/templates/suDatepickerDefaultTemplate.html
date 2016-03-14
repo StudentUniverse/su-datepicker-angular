@@ -13,7 +13,7 @@
       date="currentDate"
       click-callback="selectDate(date)"
       date-disabled="isDateDisabled(date)"
-      custom-class="getDateClass(date)"
+      custom-class="customClass({date: date})"
       cheap-mouseenter-callback="setPotentialDate(date)"
       cheap-mouseout-callback="cheapMouseoutCallback(date)">
     </su-datepicker-month-default>

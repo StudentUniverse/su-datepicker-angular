@@ -1,0 +1,11 @@
+.su-datepicker-day:hover {
+	background-color: rgba(108,177,0,0.2);
+}
+
+.active-date {
+	background-color: #6cb100;
+}
+
+.active-date:hover {
+	background-color: #6cb100;
+}
