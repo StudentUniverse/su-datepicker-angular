@@ -1,13 +1,13 @@
-.su-datepicker-day:hover, 
+.su-datepicker-day:hover,
 .potential-range {
-	background-color: rgba(108,177,0,0.2) !important;
+	background-color: rgba(108,177,0,0.2);
 }
 
-.selected-range, 
-.start-date, 
-.start-date:hover, 
-.end-date, 
+.selected-range,
+.start-date,
+.start-date:hover,
+.end-date,
 .end-date:hover {
-	background-color: #6cb100 !important;
+	background-color: #6cb100;
 	color: #fff;
 }

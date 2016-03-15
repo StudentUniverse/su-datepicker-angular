@@ -4,25 +4,6 @@
 	box-sizing: border-box;
 }
 
-.su-input {
-	display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    margin-bottom: 10px;
-}
-
 .su-datepicker {
 	background-color: #fff;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
@@ -81,30 +62,13 @@
     font-size: 75%;
 }
 
-.su-datepicker-default button.su-datepicker-day,
-.su-datepicker-range button.su-datepicker-day {
+.su-datepicker-day {
 	background-color: #fff;
     border-color: transparent;
     border-style: inset;
 	font-size: 13px;
 	font-weight: normal;
     transition: all 0.125s ease-in-out;
-}
-
-.su-datepicker-default button.su-datepicker-day:hover,
-.su-datepicker-range button.su-datepicker-day:hover {
-	background-color: rgba(108,177,0,0.2);
-}
-
-.su-datepicker-default button.su-datepicker-day.active-date,
-.su-datepicker-range button.su-datepicker-day.active-date {
-	background-color: #6cb100;
-	color: #fff;
-}
-
-.su-datepicker-default button.su-datepicker-day.active-date:hover,
-.su-datepicker-range button.su-datepicker-day.active-date:hover {
-	background-color: #6cb100;
 }
 
 .su-datepicker-default button.su-datepicker-day:active,
