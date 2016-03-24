@@ -69,12 +69,13 @@
 	font-size: 13px;
 	font-weight: normal;
     transition: all 0.125s ease-in-out;
+		cursor: pointer;
 }
 
-.su-datepicker-default button.su-datepicker-day:active,
-.su-datepicker-default button.su-datepicker-day:focus,
-.su-datepicker-range button.su-datepicker-day:active,
-.su-datepicker-range button.su-datepicker-day:focus,
+.su-datepicker-default .su-datepicker-day:active,
+.su-datepicker-default .su-datepicker-day:focus,
+.su-datepicker-range .su-datepicker-day:active,
+.su-datepicker-range .su-datepicker-day:focus,
 .su-datepicker-default .su-datepicker-change-button button:active,
 .su-datepicker-default .su-datepicker-change-button button:focus,
 .su-datepicker-range .su-datepicker-change-button button:active,

@@ -2,12 +2,12 @@
   <div>
     <su-datepicker-change-button type="previous"
           click-callback="moveMonth(-1)"
-          is-disabled="previousMonthDisabled({currentDate: currentDateOne})">
+          is-disabled="previousMonthDisabled({currentDate: startDate})">
       </su-datepicker-change-button>
-    <su-datepicker-header header="{{header(currentDateOne)}}"></su-datepicker-header>
+    <su-datepicker-header header="{{header(startDate)}}"></su-datepicker-header>
     <div>
       <su-datepicker-month-default
-        date="currentDateOne"
+        date="startDate"
         click-callback="onDateSelect({date: date})"
         date-disabled="isDateDisabled(date)"
         custom-class="customClass({date: date})"
@@ -17,14 +17,14 @@
     </div>
   </div>
   <div>
-    <su-datepicker-header header="{{header(currentDateTwo)}}"></su-datepicker-header>
+    <su-datepicker-header header="{{header(nextDate)}}"></su-datepicker-header>
      <su-datepicker-change-button type="next"
             click-callback="moveMonth(1)"
-            is-disabled="nextMonthDisabled({currentDate: currentDateTwo})">
+            is-disabled="nextMonthDisabled({currentDate: nextDate})">
       </su-datepicker-change-button>
       <div>
         <su-datepicker-month-default
-          date="currentDateTwo"
+          date="nextDate"
           click-callback="onDateSelect({date: date})"
           date-disabled="isDateDisabled(date)"
           custom-class="customClass({date: date})"
@@ -34,5 +34,5 @@
       </div>
     </div>
   </div>
-  
+
 </div>

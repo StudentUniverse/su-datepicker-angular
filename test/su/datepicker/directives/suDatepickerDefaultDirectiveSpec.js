@@ -33,40 +33,17 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
       expect(element.html()).toEqual(templateContents);
     }));
 
-    describe('currentDate', function(){
+    describe('date', function(){
       it('should be exposed on the scope', function(){
         $rootScope.date = new Date();
         var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
         $rootScope.$digest();
         var childElement = angular.element(element.children()[0]);
         var childScope = childElement.scope();
-        expect(angular.isDate(childScope.currentDate)).toBe(true);
-        expect($rootScope.date.getFullYear()).toEqual(childScope.currentDate.getFullYear());
-        expect($rootScope.date.getMonth()).toEqual(childScope.currentDate.getMonth());
-        expect($rootScope.date.getDate()).toEqual(childScope.currentDate.getDate());
-      });
-
-      it('should not affect scope date', function(){
-        $rootScope.date = new Date(2016, 1, 22);
-        var element = $compile('<su-datepicker-default date="date"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        expect($rootScope.date.getFullYear()).toEqual(childScope.currentDate.getFullYear());
-        expect($rootScope.date.getMonth()).toEqual(childScope.currentDate.getMonth());
-        expect($rootScope.date.getDate()).toEqual(childScope.currentDate.getDate());
-
-        childScope.currentDate = new Date(2017, 2, 10);
-        $rootScope.$digest();
-
-        expect($rootScope.date.getFullYear()).toEqual(2016);
-        expect($rootScope.date.getMonth()).toEqual(1);
-        expect($rootScope.date.getDate()).toEqual(22);
-
-        expect(childScope.currentDate.getFullYear()).toEqual(2017);
-        expect(childScope.currentDate.getMonth()).toEqual(2);
-        expect(childScope.currentDate.getDate()).toEqual(10);
+        expect(angular.isDate(childScope.date)).toBe(true);
+        expect($rootScope.date.getFullYear()).toEqual(childScope.date.getFullYear());
+        expect($rootScope.date.getMonth()).toEqual(childScope.date.getMonth());
+        expect($rootScope.date.getDate()).toEqual(childScope.date.getDate());
       });
     });
 
@@ -88,9 +65,9 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         var childScope = childElement.scope();
 
         childScope.moveMonth(1);
-        expect(childScope.currentDate.getFullYear()).toEqual(2016);
-        expect(childScope.currentDate.getMonth()).toEqual(2);
-        expect(childScope.currentDate.getDate()).toEqual(1);
+        expect(childScope.date.getFullYear()).toEqual(2016);
+        expect(childScope.date.getMonth()).toEqual(2);
+        expect(childScope.date.getDate()).toEqual(1);
       });
     });
 

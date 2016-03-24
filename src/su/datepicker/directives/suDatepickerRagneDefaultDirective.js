@@ -34,9 +34,9 @@ function suDatepickerRangeDefaultDirective($filter){
         potentialDate,
         pastDisabled = attrs.hasOwnProperty(attrs.$normalize('disable-past'));
 
-      // need a seperate date reference for calendar tracking
-      scope.currentDateOne = util.copyDateOnly(scope.startDate || new Date());
-      scope.currentDateTwo = util.changeMonth(scope.currentDateOne, 1);
+      // need a seperate date reference for second calendar tracking
+      // will be updated by the startDate $watch
+      scope.nextDate = undefined;
 
       if(attrs.hasOwnProperty('isDateDisabled')){
         var originalDateDisabled = scope.isDateDisabled;
@@ -53,8 +53,7 @@ function suDatepickerRangeDefaultDirective($filter){
       }
 
       scope.moveMonth = function(diff) {
-        scope.currentDateOne = util.changeMonth(scope.currentDateOne, diff);
-        scope.currentDateTwo = util.changeMonth(scope.currentDateOne, 1);
+        scope.startDate = util.changeMonth(scope.startDate, diff);
       };
 
       if(attrs.hasOwnProperty('header')){
@@ -85,6 +84,16 @@ function suDatepickerRangeDefaultDirective($filter){
           return false;
         };
       }
+
+      scope.$watch('startDate', function(newVal){
+        // do not allow statDate to be undefined
+        if(!angular.isDate(newVal)){
+          scope.startDate = today;
+        } else {
+          // keep next calendat date in sync
+          scope.nextDate = util.changeMonth(scope.startDate, 1);
+        }
+      });
     }
   };
 }

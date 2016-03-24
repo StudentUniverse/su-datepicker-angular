@@ -26,7 +26,7 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
 
     describe('currentDate', function(){
 
-      it('should expose currentDateOne and currentDateTwo on the scope', function(){
+      it('should expose startDate and nextDate on the scope', function(){
         var today = new Date();
         $rootScope.startDate = undefined;
 
@@ -37,20 +37,20 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
         var childScope = childElement.scope();
 
         // should default to today
-        expect(angular.isDate(childScope.currentDateOne)).toBe(true);
-        expect(childScope.currentDateOne.getFullYear()).toEqual(today.getFullYear());
-        expect(childScope.currentDateOne.getMonth()).toEqual(today.getMonth());
-        expect(childScope.currentDateOne.getDate()).toEqual(today.getDate());
+        expect(angular.isDate(childScope.startDate)).toBe(true);
+        expect(childScope.startDate.getFullYear()).toEqual(today.getFullYear());
+        expect(childScope.startDate.getMonth()).toEqual(today.getMonth());
+        expect(childScope.startDate.getDate()).toEqual(today.getDate());
 
-        expect(angular.isDate(childScope.currentDateTwo)).toBe(true);
-        if(childScope.currentDateOne.getMonth() === 11){
-          expect(childScope.currentDateTwo.getFullYear()).toBe(childScope.currentDateOne.getFullYear() + 1);
-          expect(childScope.currentDateTwo.getMonth()).toBe(1);
+        expect(angular.isDate(childScope.nextDate)).toBe(true);
+        if(childScope.startDate.getMonth() === 11){
+          expect(childScope.nextDate.getFullYear()).toBe(childScope.startDate.getFullYear() + 1);
+          expect(childScope.nextDate.getMonth()).toBe(1);
         } else {
-          expect(childScope.currentDateTwo.getFullYear()).toBe(childScope.currentDateOne.getFullYear());
-          expect(childScope.currentDateTwo.getMonth()).toBe(childScope.currentDateOne.getMonth() + 1);
+          expect(childScope.nextDate.getFullYear()).toBe(childScope.startDate.getFullYear());
+          expect(childScope.nextDate.getMonth()).toBe(childScope.startDate.getMonth() + 1);
         }
-        expect(childScope.currentDateTwo.getDate()).toBe(1);
+        expect(childScope.nextDate.getDate()).toBe(1);
       });
 
       it('if startDate is defined set first calendar to start date month and second calendar to following month', function(){
@@ -63,15 +63,15 @@ describe('su.datepicker.directives.suDatepickerRangeDefaultDirective', function(
         var childElement = angular.element(element.children()[0]);
         var childScope = childElement.scope();
 
-        expect(angular.isDate(childScope.currentDateOne)).toBe(true);
-        expect(childScope.currentDateOne.getFullYear()).toEqual(someDate.getFullYear());
-        expect(childScope.currentDateOne.getMonth()).toEqual(someDate.getMonth());
-        expect(childScope.currentDateOne.getDate()).toEqual(someDate.getDate());
+        expect(angular.isDate(childScope.startDate)).toBe(true);
+        expect(childScope.startDate.getFullYear()).toEqual(someDate.getFullYear());
+        expect(childScope.startDate.getMonth()).toEqual(someDate.getMonth());
+        expect(childScope.startDate.getDate()).toEqual(someDate.getDate());
 
-        expect(angular.isDate(childScope.currentDateTwo)).toBe(true);
-        expect(childScope.currentDateTwo.getFullYear()).toBe(2017);
-        expect(childScope.currentDateTwo.getMonth()).toBe(0); //should be next month
-        expect(childScope.currentDateTwo.getDate()).toBe(1);
+        expect(angular.isDate(childScope.nextDate)).toBe(true);
+        expect(childScope.nextDate.getFullYear()).toBe(2017);
+        expect(childScope.nextDate.getMonth()).toBe(0); //should be next month
+        expect(childScope.nextDate.getDate()).toBe(1);
       });
 
       describe('isDateDisabled', function(){
