@@ -2,6 +2,7 @@ function popupDatepickerExampleCtrl($scope, $document){
   $scope.destination = undefined;
   $scope.date = undefined;
   $scope.shown = false;
+  $scope.calendarDate = undefined;
 
   $scope.customClass = function(date){
     if (angular.isDate(date) && angular.isDate($scope.date)) {

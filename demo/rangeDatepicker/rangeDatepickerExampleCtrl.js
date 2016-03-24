@@ -4,6 +4,7 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
 
   $scope.start = undefined;
   $scope.end = undefined;
+  $scope.calendarDate = undefined; //will default to today
 
   $scope.isDateDisabled = function(date) {
     if (angular.isDate(date)) {
@@ -44,6 +45,7 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
   };
 
   $scope.clearPotentialDate = function(date){
+    console.log('clearPotentialDate called');
     potentialDate = undefined;
     $scope.$digest(); //have to call manually
   };
