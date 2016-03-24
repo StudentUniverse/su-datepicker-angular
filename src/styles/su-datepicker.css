@@ -15,7 +15,7 @@
 
 .su-datepicker-default,
 .su-datepicker-range {
-	width: 280px;
+	width: 265px;
 }
 
 .su-datepicker-range > div:nth-of-type(1) {
@@ -25,7 +25,7 @@
 @media (min-width: 768px) {
 
 	.su-datepicker-range {
-		width: 560px;
+		width: 530px;
 	}
 
 	.su-datepicker-range > div {
@@ -52,8 +52,19 @@
 .su-datepicker-default .su-datepicker-header,
 .su-datepicker-range .su-datepicker-header {
 	color: #6cb100;
+	font-size: 85%;
 	padding-bottom: 5px;
 	text-align: center;
+}
+
+.su-datepicker-default table,
+.su-datepicker-range table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.su-datepicker button {
+    border: 0;
 }
 
 .su-datepicker-default table th,
@@ -62,14 +73,20 @@
     font-size: 75%;
 }
 
+.su-datepicker-default td,
+.su-datepicker-range td {
+    padding: 0;
+}
+
 .su-datepicker-day {
 	background-color: #fff;
     border-color: transparent;
     border-style: inset;
+    cursor: pointer;
 	font-size: 13px;
 	font-weight: normal;
+    padding: 9px;
     transition: all 0.125s ease-in-out;
-		cursor: pointer;
 }
 
 .su-datepicker-default .su-datepicker-day:active,
@@ -102,12 +119,12 @@
 
 .su-datepicker-default .su-datepicker-change-button-previous,
 .su-datepicker-range .su-datepicker-change-button-previous {
-	left: -30px;
+	left: -28px;
 }
 
 .su-datepicker-default .su-datepicker-change-button-next,
 .su-datepicker-range .su-datepicker-change-button-next {
-	right: 10px;
+	right: 8px;
 }
 
 .su-datepicker-default .su-datepicker-change-button button,
@@ -117,10 +134,25 @@
 	border-radius: 50%;
 	color: #d3e8b3;
 	font-size: 1.5em;
-    height: 40px;
+    height: 35px;
     line-height: 0;
+    padding: 5px;
     transition: all 0.125s ease-in-out;
-	width: 40px;
+	width: 35px;
+}
+
+.su-datepicker-default .su-datepicker-change-button .su-prev-arrow,
+.su-datepicker-range .su-datepicker-change-button .su-prev-arrow,
+.su-datepicker-default .su-datepicker-change-button .su-next-arrow,
+.su-datepicker-range .su-datepicker-change-button .su-next-arrow {
+    fill: #6cb100;
+}
+
+.su-datepicker-default .su-datepicker-change-button button[disabled] .su-prev-arrow,
+.su-datepicker-range .su-datepicker-change-button button[disabled] .su-prev-arrow,
+.su-datepicker-default .su-datepicker-change-button button[disabled] .su-next-arrow,
+.su-datepicker-range .su-datepicker-change-button button[disabled] .su-next-arrow {
+    fill: #ddd;
 }
 
 .su-datepicker-default .su-datepicker-change-button button:hover:enabled,
