@@ -20,6 +20,7 @@ function suDatepickerDefaultDirective($filter) {
       isDateDisabled: '&',
       selectDate: '&',
       cheapMouseenterCallback: '&',
+      cheapMouseoutCallback: '&',
       customClass: '&',
       previousMonthDisabled: '&',
       nextMonthDisabled: '&',
@@ -27,13 +28,10 @@ function suDatepickerDefaultDirective($filter) {
     },
     link: function(scope, element, attrs) {
       if(!attrs.hasOwnProperty('date')){
-        throw 'su.datepicker.directives.suDatepickerDefault: name attribute is required';
+        throw 'su.datepicker.directives.suDatepickerDefault: date attribute is required';
       }
       var today = new Date(),
-        potentialDate;
-
-      // need a seperate date reference for things like changing the month
-      scope.currentDate = util.copyDateOnly(scope.date || new Date());
+        pastDisabled = attrs.hasOwnProperty(attrs.$normalize('disable-past'));
 
       if(attrs.hasOwnProperty('isDateDisabled')){
         var originalDateDisabled = scope.isDateDisabled;
@@ -42,57 +40,30 @@ function suDatepickerDefaultDirective($filter) {
         };
       } else {
         scope.isDateDisabled = function(date) {
-          if (attrs.hasOwnProperty(attrs.$normalize('disable-past'))) {
+          if (pastDisabled) {
             return suTimeNeutralDateCompareFilter(date, today) === -1;
           }
           return false;
         };
       }
 
-      scope.moveMonth = function(diff) {
-        scope.currentDate = util.changeMonth(scope.currentDate, diff);
-      };
-
-      if(attrs.hasOwnProperty('selectDate')){
-        var originalSelectDate = scope.selectDate;
-        scope.selectDate = function(date){
-          return originalSelectDate({date: date});
-        };
-      } else {
-        scope.selectDate = function(date) {
-          scope.date = date;
+      if(pastDisabled && !attrs.hasOwnProperty('previousMonthDisabled')){
+        scope.previousMonthDisabled = function(variables) {
+          var currentDate = variables && variables.currentDate;
+          if (angular.isDate(currentDate)) {
+            if (today.getFullYear() > currentDate.getFullYear()) {
+              return true;
+            } else if (today.getFullYear() === currentDate.getFullYear() &&
+              today.getMonth() >= currentDate.getMonth()) {
+              return true;
+            }
+          }
+          return false;
         };
       }
 
-      scope.getDateClass = function(date) {
-        if(attrs.hasOwnProperty('customClass')){
-          return scope.customClass({date: date});
-        } else {
-          if (angular.isDate(date) && angular.isDate(scope.date)) {
-            if (scope.date.getFullYear() === date.getFullYear() &&
-            scope.date.getMonth() === date.getMonth() &&
-            scope.date.getDate() === date.getDate()) {
-              return 'active-date';
-            } else if (potentialDate) {
-              if (potentialDate.getFullYear() === date.getFullYear() &&
-              potentialDate.getMonth() === date.getMonth() &&
-              potentialDate.getDate() === date.getDate()) {
-                return 'potential-date';
-              }
-            }
-          }
-        }
-      };
-
-      scope.setPotentialDate = function(date) {
-        if(attrs.hasOwnProperty('cheapMouseenterCallback')){
-          return scope.cheapMouseenterCallback({date: date});
-        } else {
-          if (angular.isDate(date)) {
-            potentialDate = date;
-            scope.$digest();
-          }
-        }
+      scope.moveMonth = function(diff) {
+        scope.date = util.changeMonth(scope.date, diff);
       };
 
       if(attrs.hasOwnProperty('header')){
@@ -108,6 +79,12 @@ function suDatepickerDefaultDirective($filter) {
           }
         };
       }
+
+      scope.$watch('date', function(newVal){
+        if(!angular.isDate(newVal)){
+          scope.date = util.copyDateOnly(today);
+        }
+      });
     }
   };
 }

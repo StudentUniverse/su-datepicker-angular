@@ -10,10 +10,16 @@ function suDatepickerMonthDefaultDirective(){
       clickCallback: '&',
       dateDisabled: '&',
       customClass: '&',
-      cheapMouseenterCallback: '&'
+      cheapMouseenterCallback: '&',
+      cheapMouseoutCallback: '&'
     },
     templateUrl: function(element, attrs){
       return attrs.templateUrl || 'su.datepicker.templates.suDatepickerMonthDefaultTemplate';
+    },
+    link: function(scope, element, attrs){
+      if(!attrs.hasOwnProperty('date')){
+        throw 'su.datepicker.directives.suDatepickerMonthDefault: date attribute is required';
+      }
     }
   };
 }

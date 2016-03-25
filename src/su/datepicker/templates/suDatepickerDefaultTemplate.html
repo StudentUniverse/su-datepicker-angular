@@ -1,26 +1,21 @@
-<div class="datepicker datepicker-default">
-  <div class="col-xs-4 back">
-    <button class="previous"
-      tabindex="-1"
-      ng-click="moveMonth(-1)"
-      ng-disabled="previousMonthDisabled({currentDate: currentDate})">&laquo;</button>
-  </div>
-  <div class="col-xs-4 month text-center">
-    <strong ng-bind="header(currentDate)"></strong>
-  </div>
-  <div class="col-xs-4 forward text-right">
-    <button class="next"
-      tabindex="-1"
-      ng-click="moveMonth(1)"
-      ng-disabled="nextMonthDisabled({currentDate: currentDate})">&raquo;</button>
-  </div>
+<div class="su-datepicker su-datepicker-default">
+  <su-datepicker-change-button type="previous"
+    click-callback="moveMonth(-1)"
+    is-disabled="previousMonthDisabled({currentDate: date})">
+  </su-datepicker-change-button>
+  <su-datepicker-header header="{{header(date)}}"></su-datepicker-header>
+  <su-datepicker-change-button type="next"
+    click-callback="moveMonth(1)"
+    is-disabled="nextMonthDisabled({currentDate: date})">
+  </su-datepicker-change-button>
   <div>
     <su-datepicker-month-default
-      date="currentDate"
-      click-callback="selectDate(date)"
+      date="date"
+      click-callback="selectDate({date: date})"
       date-disabled="isDateDisabled(date)"
-      custom-class="getDateClass(date)"
-      cheap-mouseenter-callback="setPotentialDate(date)">
+      custom-class="customClass({date: date})"
+      cheap-mouseenter-callback="setPotentialDate(date)"
+      cheap-mouseout-callback="cheapMouseoutCallback()">
     </su-datepicker-month-default>
   </div>
 </div>

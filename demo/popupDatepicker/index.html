@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width"/>
+  <title>SU datepicker demo</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <script src="../../lib/angular/1.2.29/angular/angular.js"></script>
+  <script src="../resourceLoadHelper.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="popupDatepickerExampleCtrl.js"></script>
+  <script src="suExternalCheapClickDirective.js"></script>
+  <script>
+    angular.module('app', ['su.datepicker'])
+      .controller('popupDatepickerExampleCtrl', popupDatepickerExampleCtrl)
+      .directive('suExternalCheapClick', suExternalCheapClickDirective)
+  </script>
+</head>
+
+<body ng-app="app" ng-controller="popupDatepickerExampleCtrl">
+  <form ng-submit="submit()">
+    <div>
+      <input type="text"
+        class="su-input"
+        placeholder="destination"
+        ng-model="destination"
+        ng-focus="hideDatepicker()"/>
+    </div>
+    <div su-external-cheap-click="hideDatepicker(true)">
+        <input type="text"
+          class="su-input"
+          placeholder="select date"
+          ng-model="date"
+          readonly="true"
+          su-datepicker-date-parser
+          ng-focus="showDatepicker()"/>
+        <div class="popup-datepicker" ng-show="shown">
+          <su-datepicker-default date="calendarDate"
+            select-date="dateSelectCallback(date)"
+            disable-past
+            custom-class="customClass(date)">
+          </su-datepicker-default>
+        </div>
+    </div>
+    <input type="submit" value="Submit" ng-focus="hideDatepicker()"/>
+  </form>
+</body>
+</html>

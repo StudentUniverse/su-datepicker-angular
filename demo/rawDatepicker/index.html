@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width"/>
+  <title>SU datepicker demo</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <script src="../../lib/angular/1.2.29/angular/angular.js"></script>
+  <script src="../resourceLoadHelper.js"></script>
+  <link rel="stylesheet" href="../../lib/bootstrap/3.1.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="rawMonthExampleCtrl.js"></script>
+  <script>
+    angular.module('app', ['su.datepicker'])
+      .controller('rawMonthExampleCtrl', rawMonthExampleCtrl)
+  </script>
+</head>
+
+<body ng-app="app" ng-controller="rawMonthExampleCtrl">
+  <form>
+    <div class="form-inline">
+      <input type="text" class="form-control" ng-model="date" readonly="true" su-datepicker-date-parser/>
+    </div>
+  </form>
+  <div class="datepicker datepicker-default">
+    <div class="col-xs-4">
+      <button ng-click="previousMonth()">&laquo;</button>
+    </div>
+    <div class="col-xs-4 text-center">
+      <strong ng-bind="date.getMonth() | suDatepickerMonthText"></strong>
+    </div>
+    <div class="col-xs-4 text-right">
+      <button ng-click="nextMonth()">&raquo;</button>
+    </div>
+    <div>
+      <su-datepicker-month-default
+        date="date"
+        click-callback="dateClicked(date)"
+        date-disabled="isDisabled(date)"
+        custom-class="getDateClass(date)">
+      </su-datepicker-month-default>
+    </div>
+  </div>
+</body>
+
+</html>

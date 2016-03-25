@@ -1,7 +1,6 @@
 angular.module('su.datepicker.directives.suDatepickerDateParserDirective', [])
   .directive('suDatepickerDateParser', suDatepickerDateParserDirective);
 
-// do not depend on this directive, it may be removed in the future
 suDatepickerDateParserDirective.$inject = ['$filter'];
 function suDatepickerDateParserDirective($filter) {
   var dateFilter = $filter('date');
