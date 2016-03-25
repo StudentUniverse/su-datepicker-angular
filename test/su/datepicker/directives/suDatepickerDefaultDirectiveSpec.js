@@ -124,25 +124,7 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
     });
 
     describe('selectDate', function(){
-      it('should set the date to the passed in date', function(){
-        $rootScope.today = new Date();
-        var tomorow = new Date($rootScope.today.getFullYear(), $rootScope.today.getMonth(), $rootScope.today.getDate() + 1);
-        var element = $compile('<su-datepicker-default date="today"></su-datepicker-default>')($rootScope);
-        $rootScope.$digest();
-        var childElement = angular.element(element.children()[0]);
-        var childScope = childElement.scope();
-
-        expect(typeof childScope.selectDate).toEqual('function');
-
-        childScope.selectDate(tomorow);
-        $rootScope.$digest();
-
-        expect($rootScope.today.getFullYear()).toEqual(tomorow.getFullYear());
-        expect($rootScope.today.getMonth()).toEqual(tomorow.getMonth());
-        expect($rootScope.today.getDate()).toEqual(tomorow.getDate());
-      });
-
-      it('should support override by on-date-select attribute', function(){
+      it('should call the select-date callback', function(){
         var someDate = new Date(2016, 1, 24);
         $rootScope.date = someDate;
         $rootScope.dateSelect = jasmine.createSpy();
@@ -154,7 +136,7 @@ describe('su.datepicker.directives.suDatepickerDefaultDirective', function(){
         var childScope = childElement.scope();
 
         var selectedDate = new Date();
-        childScope.selectDate(selectedDate);
+        childScope.selectDate({date: selectedDate});
         var callbackArgs = $rootScope.dateSelect.calls.argsFor(0)[0];
         expect(angular.isDate(callbackArgs)).toBe(true);
         expect(callbackArgs.getFullYear()).toEqual(selectedDate.getFullYear());
