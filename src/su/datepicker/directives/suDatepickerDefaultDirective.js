@@ -49,7 +49,7 @@ function suDatepickerDefaultDirective($filter) {
 
       if(pastDisabled && !attrs.hasOwnProperty('previousMonthDisabled')){
         scope.previousMonthDisabled = function(variables) {
-          var currentDate = variables && variables.date;
+          var currentDate = variables && variables.currentDate;
           if (angular.isDate(currentDate)) {
             if (today.getFullYear() > currentDate.getFullYear()) {
               return true;
@@ -65,17 +65,6 @@ function suDatepickerDefaultDirective($filter) {
       scope.moveMonth = function(diff) {
         scope.date = util.changeMonth(scope.date, diff);
       };
-
-      if(attrs.hasOwnProperty('selectDate')){
-        var originalSelectDate = scope.selectDate;
-        scope.selectDate = function(date){
-          return originalSelectDate({date: date});
-        };
-      } else {
-        scope.selectDate = function(date) {
-          scope.date = date;
-        };
-      }
 
       if(attrs.hasOwnProperty('header')){
         var originalHeader = scope.header;
