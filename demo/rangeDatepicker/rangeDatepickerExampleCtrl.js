@@ -4,6 +4,7 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
 
   $scope.start = undefined;
   $scope.end = undefined;
+  $scope.calendarDate = undefined; //will default to today
 
   $scope.isDateDisabled = function(date) {
     if (angular.isDate(date)) {
@@ -43,12 +44,26 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
     }
   };
 
+  $scope.clearPotentialDate = function(date){
+    potentialDate = undefined;
+    $scope.$digest(); //have to call manually
+  };
+
   $scope.getDateClass = function(date) {
+    var classes = [];
     if (date) {
       if (angular.isDefined($scope.start)) {
+        if(suTimeNeutralDateCompareFilter(date, $scope.start) === 0){
+          classes.push('start-date');
+        }
+
         if (angular.isDefined($scope.end)) {
+          if(suTimeNeutralDateCompareFilter(date, $scope.end) === 0){
+            classes.push('end-date');
+          }
+
           if (dateInRange(date, $scope.start, $scope.end)) {
-            return 'in-selected-date-range';
+            classes.push('selected-range');
           }
         } else {
           if (angular.isDefined(potentialDate)) {
@@ -56,12 +71,13 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
             var start = suTimeNeutralDateCompareFilter(potentialDate, $scope.start) <= 0 ? potentialDate : $scope.start;
             var end = suTimeNeutralDateCompareFilter(potentialDate, $scope.start) <= 0 ? $scope.start : potentialDate;
             if (dateInRange(date, start, end)) {
-              return 'in-potential-date-range';
+              classes.push('potential-range');
             }
           }
         }
       }
     }
+    return classes.join(' ');
   };
 
   $scope.disableNextMonth = function(currentDate) {
@@ -71,18 +87,6 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
         return true;
       } else if (currentDate.getFullYear() === nextYear &&
         currentDate.getMonth() >= today.getMonth()) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  $scope.disablePreviousMonth = function(currentDate) {
-    if (angular.isDate(currentDate)) {
-      if (today.getFullYear() > currentDate.getFullYear()) {
-        return true;
-      } else if (today.getFullYear() === currentDate.getFullYear() &&
-        today.getMonth() >= currentDate.getMonth()) {
         return true;
       }
     }

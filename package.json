@@ -1,6 +1,6 @@
 {
   "name": "su-datepicker-angular",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "flexible angular date range picker without dependencies",
   "main": "dist/su-datepicker.min.js",
   "scripts": {

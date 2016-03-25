@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, user-scalable=no, width=device-width"/>
+  <title>SU datepicker demo</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <script src="../../lib/angular/1.2.29/angular/angular.js"></script>
+  <script src="../resourceLoadHelper.js"></script>
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="defaultDatepickerExampleCtrl.js"></script>
+  <script>
+    angular.module('app', ['su.datepicker'])
+      .controller('defaultDatepickerExampleCtrl', defaultDatepickerExampleCtrl)
+  </script>
+</head>
+
+<body ng-app="app" ng-controller="defaultDatepickerExampleCtrl">
+  <form>
+    <div>
+      <input type="text" class="su-input" ng-model="date" readonly="true" su-datepicker-date-parser/>
+    </div>
+  </form>
+
+  <div>
+    <su-datepicker-default
+      date="calendarDate"
+      select-date="selectDate(date)"
+      custom-class="customClass(date)"
+      disable-past>
+    </su-datepicker-default>
+  </div>
+</body>
+</html>

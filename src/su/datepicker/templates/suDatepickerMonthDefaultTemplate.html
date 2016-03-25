@@ -11,18 +11,10 @@
         <th class="text-center">Sat</th>
       </tr>
     </thead>
-    <tbody>
-      <tr ng-repeat="week in weeks track by $index">
-        <td ng-repeat="day in week track by $index" ng-class="customClass({date: day})" class="text-center">
-          <button class="btn btn-default btn-sm"
-              tabindex="-1"
-              ng-if="day"
-              style="width: 100%;"
-              ng-click="clickCallback({date: day})"
-              su-datepicker-cheap-event="mouseenter" su-datepicker-cheap-event-mouseenter="cheapMouseenterCallback({date: day})"
-              ng-disabled="dateDisabled({date: day})"
-              ng-bind="day.getDate()">
-          </button>
+    <tbody su-datepicker-cheap-event="mouseleave" su-datepicker-cheap-event-mouseleave="cheapMouseoutCallback({date: day})">
+      <tr ng-repeat="week in weeks track by $index" class="su-datepicker-week-row">
+        <td ng-repeat="day in week track by $index" class="su-datepicker-day-of-week">
+          <su-datepicker-day></su-datepicker-day>
         </td>
       </tr>
     </tbody>
