@@ -1,5 +1,6 @@
 function defaultDatepickerExampleCtrl($scope) {
   $scope.date = new Date();
+  $scope.calendarDate = new Date();
 
   $scope.customClass = function(date){
     if (angular.isDate(date) && angular.isDate($scope.date)) {
@@ -9,5 +10,9 @@ function defaultDatepickerExampleCtrl($scope) {
         return 'active-date';
       }
     }
+  };
+
+  $scope.selectDate = function(date){
+    $scope.date = date;
   };
 }

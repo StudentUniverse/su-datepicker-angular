@@ -25,7 +25,12 @@
   </form>
 
   <div>
-    <su-datepicker-default date="date" custom-class="customClass(date)" disable-past></su-datepicker-default>
+    <su-datepicker-default
+      date="calendarDate"
+      select-date="selectDate(date)"
+      custom-class="customClass(date)"
+      disable-past>
+    </su-datepicker-default>
   </div>
 </body>
 </html>

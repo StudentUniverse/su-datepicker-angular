@@ -45,7 +45,6 @@ function rangeDatepickerExampleCtrl($scope, suTimeNeutralDateCompareFilter) {
   };
 
   $scope.clearPotentialDate = function(date){
-    console.log('clearPotentialDate called');
     potentialDate = undefined;
     $scope.$digest(); //have to call manually
   };

@@ -16,46 +16,61 @@
         <h1>StudentUniverse angular date range picker</h1>
         <section class="rawMonthExample">
           <h3>Raw month picker picker(su-datepicker-month-default)</h3>
+          <p>This is a low level directive that provides the days of a month with
+            an api for behavior customization.
+          </p>
           <ul>
             <li><code>date</code> is required and is used to track which month is displayed.</li>
-            <li><code>clickCallback</code> will be called with the date that was clicked.</li>
-            <li><code>dateDisabled</code> callback will be called to determine if date is enabled.</li>
-            <li><code>customClass</code> callback will be called to set custom styles.</li>
-            <li><code>cheapMousernterCallback</code> will be called when a date is hovered. Callback must trigger <code>$digest</code> manually for performance reasons.</li>
+            <li><code>click-callback</code> will be called with the date that was clicked.</li>
+            <li><code>date-disabled</code> callback will be called to determine if date is enabled.</li>
+            <li><code>custom-class</code> callback will be called to set custom styles.</li>
+            <li><code>cheap-mouseenter-callback</code> will be called when a date is hovered. Callback must trigger <code>$digest</code> manually for performance reasons.</li>
+            <li><code>cheap-mouseout-callback</code> is called when the mouse leaves the body of the calendar table. Callback must trigger <code>$digest</code>.</li>
+            <li><code>template-url</code> can be used to specify custom template.</li>
           </ul>
           <iframe src="demo/rawDatepicker/index.html" frameBorder="0" width="300" height="300"></iframe>
-          <p>If you need further customizations you can use su-datepicker-month directive.</p>
         </section>
         <hr/>
         <section>
           <h3>Default datepicker encompasses the raw month picker logic(su-datepicker-default)</h3>
+          <p>This datepicker provides a good base(month change, header, disable past) with sane defaults
+            and many points for customization.
+          </p>
           <ul>
-            <li>The date will not change by changing month.</li>
-            <li>Date change is expected to be one way using the datepicker.</li>
-            <li>Using <code>disable-past</code> attribute will disable dates less than today.</li>
-            <li>Custom date disabled logic can be used by supplying a <code>is-date-disabled</code> callback.</li>
-            <li>Custom date click callback can be used by supplying a <code>select-date</code> callback.</li>
-            <li>Custom mouseenter logic can be used by supplying <code>cheap-mouseenter-callback</code>.</li>
-            <li>Custom date class logic can be used by supplying <code>custom-class</code> callback.</li>
-            <li>Custom header text can be set by supplying <code>header</code> callback.</li>
+            <li><code>date</code> is required and is used to track which month is displayed.</li>
+            <li><code>select-date</code> callback will be called with the date clicked.</li>
+            <li><code>is-date-disabled</code> callback can be used to disable dates.</li>
+            <li><code>disable-past</code> attribute can be used as a convinience to disable dates less than today.</li>
+            <li><code>custom-class</code> callback can be used to set additional classes on the date.</li>
+            <li><code>cheap-mouseenter-callback</code> will be called when a date is hovered. Callback must trigger <code>$digest</code> manually for performance reasons.</li>
+            <li><code>cheap-mouseout-callback</code> is called when the mouse leaves the body of the calendar table. Callback must trigger <code>$digest</code>.</li>
+            <li><code>previous-month-disabled</code> callback can be used to disable the previous month button.</li>
+            <li><code>next-month-disabled</code> callback can be used to disable the next month button.</li>
+            <li><code>header</code> callback can be used to customize the header text.</li>
+            <li><code>template-url</code> can be used to specify custom template.</li>
           </ul>
           <iframe src="demo/defaultDatepicker/index.html" frameBorder="0" width="400" height="300"></iframe>
-          <p>Custom template can be used by adding template-url attribute.</p>
         </section>
         <hr/>
         <section>
           <h3>Default date range picker encompasses the raw month picker logic(su-datepicker-range-default)</h3>
+          <p>
+            This datepicker shows multiple months allowing custom range selection behavior.
+          </p>
           <ul>
-            <li>The date will not change by changing month.</li>
-            <li>Date change is expected to be one way using the datepicker.</li>
-            <li>Using disable-past attribute will disable dates less than today.</li>
-            <li>Custom date disabled logic can be used by supplying a <code>is-date-disabled</code> callback.</li>
-            <li>Custom date click callback can be used by supplying a <code>select-date</code> callback.</li>
-            <li>Custom mouseenter logic can be used by supplying <code>cheap-mouseenter-callback</code>.</li>
-            <li>Custom date class logic can be used by supplying <code>custom-class</code> callback.</li>
-            <li>Custom header text can be set by supplying <code>header</code> callback.</li>
+            <li><code>start-date</code> is required and is used to track which months are displayed. The second month will be kept in sync</li>
+            <li><code>select-date</code> callback will be called with the date clicked.</li>
+            <li><code>is-date-disabled</code> callback can be used to disable dates.</li>
+            <li><code>disable-past</code> attribute can be used as a convinience to disable dates less than today.</li>
+            <li><code>custom-class</code> callback can be used to set additional classes on the date.</li>
+            <li><code>cheap-mouseenter-callback</code> will be called when a date is hovered. Callback must trigger <code>$digest</code> manually for performance reasons.</li>
+            <li><code>cheap-mouseout-callback</code> is called when the mouse leaves the body of either calendar table. Callback must trigger <code>$digest</code>.</li>
+            <li><code>previous-month-disabled</code> callback can be used to disable the previous month button.</li>
+            <li><code>next-month-disabled</code> callback can be used to disable the next month button.</li>
+            <li><code>header</code> callback can be used to customize the header text.</li>
+            <li><code>template-url</code> can be used to specify custom template.</li>
           </ul>
-          <iframe src="demo/rangeDatepicker/index.html" frameBorder="0" width="800" height="800"></iframe>
+          <iframe src="demo/rangeDatepicker/index.html" frameBorder="0" width="800" height="400"></iframe>
         </section>
         <hr/>
         <section>
@@ -67,7 +82,7 @@
             the popup will close.
           </p>
           <p>Note: because the code is running in an iframe only clicks within the frame will close the popup</p>
-          <iframe src="demo/popupDatepicker/index.html" frameBorder="0" width="600" height="300"></iframe>
+          <iframe src="demo/popupDatepicker/index.html" frameBorder="0" width="600" height="400"></iframe>
         </section>
       </div>
     </div>
