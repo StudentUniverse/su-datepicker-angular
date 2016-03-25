@@ -5,11 +5,7 @@ Flexible angular date range picker without dependencies. For a demo visit [https
 This package is intended to be used with [angular](https://angularjs.org/) 1.x.
 Tested with 1.2.29.
 
-Although (bootstrap)[http://getbootstrap.com/] is not necessary for the code to
-work many of the templates use bootstrap structures. These templates can
-be overwritten to get a custom look and feel.
-
-You can download su-datepicker-angular using [bower](http://bower.io/).
+Download su-datepicker-angular using [bower](http://bower.io/).
 `bower install su-datepicker-angular`
 
 Make sure that the javascript is referenced in the page typically
