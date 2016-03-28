@@ -53,7 +53,8 @@ module.exports = function(grunt) {
         ],
         exclude : [
           'test/su/datepicker/utilSpec.js'
-        ]
+        ],
+        singleRun: true
       }
     },
     uglify: {
