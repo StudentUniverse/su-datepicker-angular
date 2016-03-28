@@ -1,17 +1,18 @@
-angular.module('su.datepicker.directives.suDatepickerDateParserDirective', [])
+angular.module('su.datepicker.directives.suDatepickerDateParserDirective', [
+  'su.datepicker.providers.suDatepickerDateParserProvider'
+])
   .directive('suDatepickerDateParser', suDatepickerDateParserDirective);
 
-suDatepickerDateParserDirective.$inject = ['$filter'];
-function suDatepickerDateParserDirective($filter) {
-  var dateFilter = $filter('date');
+suDatepickerDateParserDirective.$inject = ['suDatepickerDateParser'];
+function suDatepickerDateParserDirective(suDatepickerDateParser) {
   return {
     restrict: 'A',
     require: 'ngModel',
     link: function(scope, element, attrs, controller){
-      var format = attrs.suDatepickerDateParser || 'yyyy-MM-dd';
+      var format = attrs.suDatepickerDateParser;
 
       controller.$formatters.push(function(value){
-        return dateFilter(value, format);
+        return suDatepickerDateParser(value, format);
       });
     }
   };
