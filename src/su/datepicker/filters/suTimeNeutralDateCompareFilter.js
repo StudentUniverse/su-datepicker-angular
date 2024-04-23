@@ -1,8 +1,8 @@
 angular.module('su.datepicker.filters.suTimeNeutralDateCompareFilter', [])
   .filter('suTimeNeutralDateCompare', suTimeNeutralDateCompareFilter);
 
-//-1 if date1 is less than date2
-// 0 if date1 is greate than date2
+// -1 if date1 is less than date2
+// 0 if date1 is greater than date2
 suTimeNeutralDateCompareFilter.$inject = [];
 function suTimeNeutralDateCompareFilter() {
   return function(date1, date2) {

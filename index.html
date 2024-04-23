@@ -15,10 +15,8 @@
       <div class="col-xs-12">
         <h1>StudentUniverse angular date range picker</h1>
         <section class="rawMonthExample">
-          <h3>Raw month picker picker(su-datepicker-month-default)</h3>
-          <p>This is a low level directive that provides the days of a month with
-            an api for behavior customization.
-          </p>
+          <h3>Raw month picker picker (su-datepicker-month-default)</h3>
+          <p>This is a low level directive that provides the days of a month with an api for behavior customization.</p>
           <ul>
             <li><code>date</code> is required and is used to track which month is displayed.</li>
             <li><code>click-callback</code> will be called with the date that was clicked.</li>
@@ -32,15 +30,13 @@
         </section>
         <hr/>
         <section>
-          <h3>Default datepicker encompasses the raw month picker logic(su-datepicker-default)</h3>
-          <p>This datepicker provides a good base(month change, header, disable past) with sane defaults
-            and many points for customization.
-          </p>
+          <h3>Default datepicker encompasses the raw month picker logic (su-datepicker-default)</h3>
+          <p>This datepicker provides a good base (month change, header, disable past) with sane defaults and many points for customization.</p>
           <ul>
             <li><code>date</code> is required and is used to track which month is displayed.</li>
             <li><code>select-date</code> callback will be called with the date clicked.</li>
             <li><code>is-date-disabled</code> callback can be used to disable dates.</li>
-            <li><code>disable-past</code> attribute can be used as a convinience to disable dates less than today.</li>
+            <li><code>disable-past</code> attribute can be used as a convenience to disable dates less than today.</li>
             <li><code>custom-class</code> callback can be used to set additional classes on the date.</li>
             <li><code>cheap-mouseenter-callback</code> will be called when a date is hovered. Callback must trigger <code>$digest</code> manually for performance reasons.</li>
             <li><code>cheap-mouseout-callback</code> is called when the mouse leaves the body of the calendar table. Callback must trigger <code>$digest</code>.</li>
@@ -53,15 +49,13 @@
         </section>
         <hr/>
         <section>
-          <h3>Default date range picker encompasses the raw month picker logic(su-datepicker-range-default)</h3>
-          <p>
-            This datepicker shows multiple months allowing custom range selection behavior.
-          </p>
+          <h3>Default date range picker encompasses the raw month picker logic (su-datepicker-range-default)</h3>
+          <p>This datepicker shows multiple months allowing custom range selection behavior.</p>
           <ul>
             <li><code>start-date</code> is required and is used to track which months are displayed. The second month will be kept in sync</li>
             <li><code>select-date</code> callback will be called with the date clicked.</li>
             <li><code>is-date-disabled</code> callback can be used to disable dates.</li>
-            <li><code>disable-past</code> attribute can be used as a convinience to disable dates less than today.</li>
+            <li><code>disable-past</code> attribute can be used as a convenience to disable dates less than today.</li>
             <li><code>custom-class</code> callback can be used to set additional classes on the date.</li>
             <li><code>cheap-mouseenter-callback</code> will be called when a date is hovered. Callback must trigger <code>$digest</code> manually for performance reasons.</li>
             <li><code>cheap-mouseout-callback</code> is called when the mouse leaves the body of either calendar table. Callback must trigger <code>$digest</code>.</li>
@@ -75,12 +69,7 @@
         <hr/>
         <section>
           <h3>Example popup datepicker</h3>
-          <p>Logic for opening and closing a datepicker popup is business specific.
-            It's fairly easy to wrap a datepicker in a popup as the following example shows.
-            The popup opens when the date field gets focus either by tabbing or clicking.
-            If either the destination or submit get focus, or there's a click otside the datepicker
-            the popup will close.
-          </p>
+          <p>Logic for opening and closing a datepicker popup is business specific. It's fairly easy to wrap a datepicker in a popup as the following example shows. The popup opens when the date field gets focus either by tabbing or clicking. If either the destination or submit get focus, or there's a click outside the datepicker the popup will close.</p>
           <p>Note: because the code is running in an iframe only clicks within the frame will close the popup</p>
           <iframe src="demo/popupDatepicker/index.html" frameBorder="0" width="600" height="400"></iframe>
         </section>
