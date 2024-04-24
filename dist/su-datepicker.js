@@ -1,6 +1,6 @@
 /**
 * @license StudentUniverse su-datepicker 0.2.0
-* (c) 2016-2024 StudentUniverse https://www.studentuniverse.com
+* (c) 2016 StudentUniverse https://www.studentuniverse.com
 * License: ISC
 **/
 (function(){
@@ -303,105 +303,6 @@ function suDatepickerMonthDirective(){
   };
 }
 
-angular.module('su.datepicker.directives.suDatepickerRangeDefaultDirective', [
-  'su.datepicker.filters.suTimeNeutralDateCompareFilter',
-  'su.datepicker.filters.suDatepickerMonthTextFilter'
-  ])
-  .directive('suDatepickerRangeDefault', suDatepickerRangeDefaultDirective);
-
-suDatepickerRangeDefaultDirective.$inject = ['$filter'];
-function suDatepickerRangeDefaultDirective($filter){
-  var suTimeNeutralDateCompareFilter = $filter('suTimeNeutralDateCompare'),
-      suDatepickerMonthTextFilter = $filter('suDatepickerMonthText');
-
-  return {
-    restrict: 'E',
-    templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'su.datepicker.templates.suDatepickerRangeDefaultTemplate';
-    },
-    scope: {
-      startDate: '=',
-      isDateDisabled: '&',
-      onDateSelect: '&',
-      cheapMouseenterCallback: '&',
-      cheapMouseoutCallback: '&',
-      customClass: '&',
-      previousMonthDisabled: '&',
-      nextMonthDisabled: '&',
-      header: '&'
-    },
-    link: function(scope, element, attrs){
-      if(!attrs.hasOwnProperty('startDate')){
-        throw "su.datepicker.directives.suDatepickerRangeDefault: start-date attribute is required";
-      }
-
-      var today = new Date(),
-        potentialDate,
-        pastDisabled = attrs.hasOwnProperty(attrs.$normalize('disable-past'));
-
-      // need a seperate date reference for second calendar tracking
-      // will be updated by the startDate $watch
-      scope.nextDate = undefined;
-
-      if(attrs.hasOwnProperty('isDateDisabled')){
-        var originalDateDisabled = scope.isDateDisabled;
-        scope.isDateDisabled = function(date){
-          return originalDateDisabled({date: date});
-        };
-      } else {
-        scope.isDateDisabled = function(date) {
-          if (pastDisabled) {
-            return suTimeNeutralDateCompareFilter(date, today) === -1;
-          }
-          return false;
-        };
-      }
-
-      scope.moveMonth = function(diff) {
-        scope.startDate = util.changeMonth(scope.startDate, diff);
-      };
-
-      if(attrs.hasOwnProperty('header')){
-        var originalHeader = scope.header;
-        scope.header = function(date){
-          return originalHeader({date: date});
-        };
-      } else {
-        scope.header = function(date) {
-          if(angular.isDate(date)){
-            var monthText = suDatepickerMonthTextFilter(date.getMonth());
-            return monthText + ' ' + date.getFullYear();
-          }
-        };
-      }
-
-      if(pastDisabled && !attrs.hasOwnProperty('previousMonthDisabled')){
-        scope.previousMonthDisabled = function(variables) {
-          var currentDate = variables && variables.currentDate;
-          if (angular.isDate(currentDate)) {
-            if (today.getFullYear() > currentDate.getFullYear()) {
-              return true;
-            } else if (today.getFullYear() === currentDate.getFullYear() &&
-              today.getMonth() >= currentDate.getMonth()) {
-              return true;
-            }
-          }
-          return false;
-        };
-      }
-
-      scope.$watch('startDate', function(newVal){
-        // do not allow statDate to be undefined
-        if(!angular.isDate(newVal)){
-          scope.startDate = today;
-        } else {
-          // keep next calendat date in sync
-          scope.nextDate = util.changeMonth(scope.startDate, 1);
-        }
-      });
-    }
-  };
-}
 
 angular.module('su.datepicker.filters.suDatepickerFiltersModule', [
   'su.datepicker.filters.suDatepickerMonthTextFilter',
@@ -424,8 +325,8 @@ function suDatepickerMonthTextFilter(){
 angular.module('su.datepicker.filters.suTimeNeutralDateCompareFilter', [])
   .filter('suTimeNeutralDateCompare', suTimeNeutralDateCompareFilter);
 
-//-1 if date1 is less than date2
-// 0 if date1 is greate than date2
+// -1 if date1 is less than date2
+// 0 if date1 is greater than date2
 suTimeNeutralDateCompareFilter.$inject = [];
 function suTimeNeutralDateCompareFilter() {
   return function(date1, date2) {
@@ -490,7 +391,7 @@ var util = {
   changeMonth: changeMonth
 };
 
-// month is inclussive(0-11)
+// month is inclusive(0-11)
 function getMonthDates(year, month){
   var days = [];
   if(typeof year === 'number' && typeof month === 'number'){
@@ -518,39 +419,39 @@ function changeMonth(date, diff){
 
 //private
 
-// month is exclussive(1-12)
+// month is exclusive(1-12)
 function getDaysInMonth(year, month) {
     return new Date(year, month, 0).getDate();
 }
 
 angular.module('su.datepicker.templates.suDatepickerTemplatesModule', ['su.datepicker.templates.suDatepickerChangeButtonTemplate', 'su.datepicker.templates.suDatepickerDayTemplate', 'su.datepicker.templates.suDatepickerDefaultTemplate', 'su.datepicker.templates.suDatepickerHeaderTemplate', 'su.datepicker.templates.suDatepickerMonthDefaultTemplate', 'su.datepicker.templates.suDatepickerRangeDefaultTemplate']);
 
-angular.module('su.datepicker.templates.suDatepickerChangeButtonTemplate', []).run(['$templateCache', function($templateCache) {
+angular.module('su.datepicker.templates.suDatepickerChangeButtonTemplate', []).run(['$templateCache', function ($templateCache) {
   $templateCache.put('su.datepicker.templates.suDatepickerChangeButtonTemplate',
     '<div class=su-datepicker-change-button><button type=button tabindex=-1 ng-click=clickCallback() ng-disabled=isDisabled()></button></div>');
 }]);
 
-angular.module('su.datepicker.templates.suDatepickerDayTemplate', []).run(['$templateCache', function($templateCache) {
+angular.module('su.datepicker.templates.suDatepickerDayTemplate', []).run(['$templateCache', function ($templateCache) {
   $templateCache.put('su.datepicker.templates.suDatepickerDayTemplate',
     '<button class=su-datepicker-day type=button tabindex=-1 ng-if=day style="width: 100%" ng-click="clickCallback({date: day})" ng-class="customClass({date: day})" su-datepicker-cheap-event=mouseenter su-datepicker-cheap-event-mouseenter="cheapMouseenterCallback({date: day})" ng-disabled="dateDisabled({date: day})" ng-bind=day.getDate()></button>');
 }]);
 
-angular.module('su.datepicker.templates.suDatepickerDefaultTemplate', []).run(['$templateCache', function($templateCache) {
+angular.module('su.datepicker.templates.suDatepickerDefaultTemplate', []).run(['$templateCache', function ($templateCache) {
   $templateCache.put('su.datepicker.templates.suDatepickerDefaultTemplate',
     '<div class="su-datepicker su-datepicker-default"><su-datepicker-change-button type=previous click-callback=moveMonth(-1) is-disabled="previousMonthDisabled({currentDate: date})"></su-datepicker-change-button><su-datepicker-header header={{header(date)}}></su-datepicker-header><su-datepicker-change-button type=next click-callback=moveMonth(1) is-disabled="nextMonthDisabled({currentDate: date})"></su-datepicker-change-button><div><su-datepicker-month-default date=date click-callback="selectDate({date: date})" date-disabled=isDateDisabled(date) custom-class="customClass({date: date})" cheap-mouseenter-callback=setPotentialDate(date) cheap-mouseout-callback=cheapMouseoutCallback()></su-datepicker-month-default></div></div>');
 }]);
 
-angular.module('su.datepicker.templates.suDatepickerHeaderTemplate', []).run(['$templateCache', function($templateCache) {
+angular.module('su.datepicker.templates.suDatepickerHeaderTemplate', []).run(['$templateCache', function ($templateCache) {
   $templateCache.put('su.datepicker.templates.suDatepickerHeaderTemplate',
     '<div class=su-datepicker-header><strong ng-bind=header></strong></div>');
 }]);
 
-angular.module('su.datepicker.templates.suDatepickerMonthDefaultTemplate', []).run(['$templateCache', function($templateCache) {
+angular.module('su.datepicker.templates.suDatepickerMonthDefaultTemplate', []).run(['$templateCache', function ($templateCache) {
   $templateCache.put('su.datepicker.templates.suDatepickerMonthDefaultTemplate',
     '<su-datepicker-month date=date><table><thead><tr><th class=text-center>Sun</th><th class=text-center>Mon</th><th class=text-center>Tue</th><th class=text-center>Wed</th><th class=text-center>Thu</th><th class=text-center>Fri</th><th class=text-center>Sat</th></tr></thead><tbody su-datepicker-cheap-event=mouseleave su-datepicker-cheap-event-mouseleave="cheapMouseoutCallback({date: day})"><tr ng-repeat="week in weeks track by $index" class=su-datepicker-week-row><td ng-repeat="day in week track by $index" class=su-datepicker-day-of-week><su-datepicker-day></su-datepicker-day></td></tr></tbody></table></su-datepicker-month>');
 }]);
 
-angular.module('su.datepicker.templates.suDatepickerRangeDefaultTemplate', []).run(['$templateCache', function($templateCache) {
+angular.module('su.datepicker.templates.suDatepickerRangeDefaultTemplate', []).run(['$templateCache', function ($templateCache) {
   $templateCache.put('su.datepicker.templates.suDatepickerRangeDefaultTemplate',
     '<div class="su-datepicker su-datepicker-range"><div><su-datepicker-change-button type=previous click-callback=moveMonth(-1) is-disabled="previousMonthDisabled({currentDate: startDate})"></su-datepicker-change-button><su-datepicker-header header={{header(startDate)}}></su-datepicker-header><div><su-datepicker-month-default date=startDate click-callback="onDateSelect({date: date})" date-disabled=isDateDisabled(date) custom-class="customClass({date: date})" cheap-mouseenter-callback="cheapMouseenterCallback({date: date})" cheap-mouseout-callback=cheapMouseoutCallback()></su-datepicker-month-default></div></div><div><su-datepicker-header header={{header(nextDate)}}></su-datepicker-header><su-datepicker-change-button type=next click-callback=moveMonth(1) is-disabled="nextMonthDisabled({currentDate: nextDate})"></su-datepicker-change-button><div><su-datepicker-month-default date=nextDate click-callback="onDateSelect({date: date})" date-disabled=isDateDisabled(date) custom-class="customClass({date: date})" cheap-mouseenter-callback="cheapMouseenterCallback({date: date})" cheap-mouseout-callback=cheapMouseoutCallback()></su-datepicker-month-default></div></div></div>');
 }]);
