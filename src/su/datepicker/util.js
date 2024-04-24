@@ -4,7 +4,7 @@ var util = {
   changeMonth: changeMonth
 };
 
-// month is inclussive(0-11)
+// month is inclusive(0-11)
 function getMonthDates(year, month){
   var days = [];
   if(typeof year === 'number' && typeof month === 'number'){
@@ -32,7 +32,7 @@ function changeMonth(date, diff){
 
 //private
 
-// month is exclussive(1-12)
+// month is exclusive(1-12)
 function getDaysInMonth(year, month) {
     return new Date(year, month, 0).getDate();
 }

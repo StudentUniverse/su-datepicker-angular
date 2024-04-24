@@ -1,14 +1,21 @@
+:root {
+	--primary-color: #007c8a;
+	--primary-color-dark: #00434a;
+	--primary-color-medium-1: #00bec5;
+	--primary-color-light: #f0f8e9;
+	--disabled-color: #454545;
+	--border-color: #ccc;
+}
+
 * {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 .su-datepicker {
-	background-color: #fff;
+	background-color: white;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-	font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-    margin-left: 20px;
+	font-family: system-ui, sans-serif;
+	margin-left: 20px;
 	padding: 10px;
 	position: relative;
 }
@@ -18,7 +25,7 @@
 	width: 265px;
 }
 
-.su-datepicker-range > div:nth-of-type(1) {
+.su-datepicker-range > div:first-of-type {
 	margin-bottom: 10px;
 }
 
@@ -33,141 +40,122 @@
 		width: 50%;
 	}
 
-	.su-datepicker-range > div:nth-of-type(1) {
-	    border-right: 1px solid #ccc;
+	.su-datepicker-range > div:first-of-type {
+		border-right: 1px solid var(--border-color);
 		margin-bottom: 0;
 	}
 
 	.su-datepicker-range > div:nth-of-type(2) {
-	    padding-left: 10px;
+		padding-left: 10px;
 	}
 
 	.su-datepicker-range:after {
-		display: table;
 		clear: both;
 		content: " ";
+		display: table;
 	}
 }
 
-.su-datepicker-default .su-datepicker-header,
-.su-datepicker-range .su-datepicker-header {
-	color: #6cb100;
+.su-datepicker-header {
+	color: var(--primary-color-dark);
 	font-size: 85%;
 	padding-bottom: 5px;
 	text-align: center;
 }
 
-.su-datepicker-default table,
-.su-datepicker-range table {
-    border-collapse: collapse;
-    border-spacing: 0;
+.su-datepicker table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 .su-datepicker button {
-    border: 0;
+	border: 0;
 }
 
-.su-datepicker-default table th,
-.su-datepicker-range table th {
-    color: #6cb100;
-    font-size: 75%;
+.su-datepicker th {
+	color: var(--primary-color-dark);
+	font-size: 75%;
 }
 
-.su-datepicker-default td,
-.su-datepicker-range td {
-    padding: 0;
+.su-datepicker td {
+	padding: 0;
 }
 
 .su-datepicker-day {
-	background-color: #fff;
-    border-color: transparent;
-    border-style: inset;
-    cursor: pointer;
+	background-color: white;
+	border-style: inset;
+	border-color: transparent;
+	cursor: pointer;
 	font-size: 13px;
 	font-weight: normal;
-    padding: 9px;
-    transition: all 0.125s ease-in-out;
+	padding: 9px;
+	transition: all 0.125s ease-in-out;
 }
 
-.su-datepicker-default .su-datepicker-day:active,
-.su-datepicker-default .su-datepicker-day:focus,
-.su-datepicker-range .su-datepicker-day:active,
-.su-datepicker-range .su-datepicker-day:focus,
-.su-datepicker-default .su-datepicker-change-button button:active,
-.su-datepicker-default .su-datepicker-change-button button:focus,
-.su-datepicker-range .su-datepicker-change-button button:active,
-.su-datepicker-range .su-datepicker-change-button button:focus {
+.su-datepicker-day:active,
+.su-datepicker-day:focus,
+.su-datepicker-change-button button:active,
+.su-datepicker-change-button button:focus {
 	outline: none;
 }
 
-.su-datepicker-default button[disabled],
-.su-datepicker-range button[disabled] {
-	background: #fff;
+.su-datepicker button[disabled] {
+	background: white;
 	color: #999;
-    cursor: not-allowed;
-    opacity: .65;
-    pointer-events: none;
+	cursor: not-allowed;
+	opacity: .65;
+	pointer-events: none;
 }
 
-.su-datepicker-default .su-datepicker-change-button,
-.su-datepicker-range .su-datepicker-change-button {
+.su-datepicker-change-button {
 	padding: 0 2px 5px 2px;
 	position: absolute;
 	top: 40%;
 	width: 0;
 }
 
-.su-datepicker-default .su-datepicker-change-button-previous,
-.su-datepicker-range .su-datepicker-change-button-previous {
+.su-datepicker-change-button-previous {
 	left: -28px;
 }
 
-.su-datepicker-default .su-datepicker-change-button-next,
-.su-datepicker-range .su-datepicker-change-button-next {
+.su-datepicker-change-button-next {
 	right: 8px;
 }
 
-.su-datepicker-default .su-datepicker-change-button button,
-.su-datepicker-range .su-datepicker-change-button button {
-	background: #fff;
-	border: 2px solid #d3e8b3;
+.su-datepicker-change-button button {
+	background: white;
+	border: 2px solid var(--primary-color-medium-1);
 	border-radius: 50%;
-	color: #d3e8b3;
+	color: var(--primary-color-medium-1);
 	font-size: 1.5em;
-    height: 35px;
-    line-height: 0;
-    padding: 5px;
-    transition: all 0.125s ease-in-out;
+	height: 35px;
+	line-height: 0;
+	padding: 5px;
+	transition: all 0.125s ease-in-out;
 	width: 35px;
 }
 
-.su-datepicker-default .su-datepicker-change-button .su-prev-arrow,
-.su-datepicker-range .su-datepicker-change-button .su-prev-arrow,
-.su-datepicker-default .su-datepicker-change-button .su-next-arrow,
-.su-datepicker-range .su-datepicker-change-button .su-next-arrow {
-    fill: #6cb100;
+.su-prev-arrow,
+.su-next-arrow {
+	fill: var(--primary-color);
 }
 
-.su-datepicker-default .su-datepicker-change-button button[disabled] .su-prev-arrow,
-.su-datepicker-range .su-datepicker-change-button button[disabled] .su-prev-arrow,
-.su-datepicker-default .su-datepicker-change-button button[disabled] .su-next-arrow,
-.su-datepicker-range .su-datepicker-change-button button[disabled] .su-next-arrow {
-    fill: #ddd;
+.su-datepicker-change-button button[disabled] .su-prev-arrow,
+.su-datepicker-change-button button[disabled] .su-next-arrow {
+	fill: var(--disabled-color);
 }
 
-.su-datepicker-default .su-datepicker-change-button button:hover:enabled,
-.su-datepicker-range .su-datepicker-change-button button:hover:enabled {
-	background: #f4ffe4;
-	border-color: #6cb100;
-	color: #6cb100;
+.su-datepicker-change-button button:hover:enabled {
+	background: var(--primary-color-light);
+	border-color: var(--primary-color);
+	color: var(--primary-color);
 }
 
-.su-datepicker-default .su-datepicker-change-button button[disabled],
-.su-datepicker-range .su-datepicker-change-button button[disabled] {
-	background: #fff;
-	border-color: #ddd;
-	color: #ddd;
-    cursor: not-allowed;
-    opacity: 1;
-    pointer-events: none;
+.su-datepicker-change-button button[disabled] {
+	background: white;
+	border-color: var(--disabled-color);
+	color: var(--disabled-color);
+	cursor: not-allowed;
+	opacity: 1;
+	pointer-events: none;
 }
